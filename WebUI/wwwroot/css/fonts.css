@@ -1,0 +1,37 @@
+/* Arodora Pro */
+@font-face {
+  font-family: 'Arodora Pro';
+  src: url('./fonts/ArodoraPro/ArodoraPro-Light.otf') format('opentype');
+  font-weight: 300;
+}
+
+/* NEXT ART */
+@font-face {
+  font-family: 'NEXT ART';
+  src: url('./fonts/NEXT-ART/NEXT-ART_Light.otf') format('opentype');
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: 'NEXT ART';
+  src: url('./fonts/NEXT-ART/NEXT-ART_Regular.otf') format('opentype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'NEXT ART';
+  src: url('./fonts/NEXT-ART/NEXT-ART_SemiBold.otf') format('opentype');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'NEXT ART';
+  src: url('./fonts/NEXT-ART/NEXT-ART_Bold.otf') format('opentype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'NEXT ART';
+  src: url('./fonts/NEXT-ART/NEXT-ART_Heavy.otf') format('opentype');
+  font-weight: 900;
+}

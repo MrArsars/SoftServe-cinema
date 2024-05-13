@@ -1,0 +1,83 @@
+.main-body {
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.site-title {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  height: 70px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+.logo img {
+  height: 50px;
+  padding: 10px;
+  width: auto;
+}
+.main-nav_link {
+  color: #000;
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 30px;
+  padding: 0 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.main-nav_item {
+  display: inline-block;
+  margin: 0 10px;
+}
+.current-page_red {
+  background-color: #f00;
+}
+.site-title h1 {
+  color: #000;
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0;
+  padding: 50px 0
+}
+h1, h2 {
+  color: #333;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 20px 0;
+  }
+  .cta_button {
+    background-color: #f00;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      font-size: 14px;
+      padding: 20px;
+      text-align: center;
+      }
+      .footer_link {
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        }
+        .footer_link:hover {
+          color: #f00;
+          text-decoration: underline;
+          }
