@@ -15,4 +15,4 @@ C:\Users\arsen\RiderProjects\SoftServe-cinema\Infrastructure\obj\Debug\net8.0\re
 C:\Users\arsen\RiderProjects\SoftServe-cinema\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb
 C:\Users\arsen\RiderProjects\SoftServe-cinema\Infrastructure\obj\Debug\net8.0\Infrastructure.genruntimeconfig.cache
 C:\Users\arsen\RiderProjects\SoftServe-cinema\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll
-C:\Users\arsen\RiderProjects\SoftServe-cinema\Infrastructure\obj\Debug\net8.0\Infrastr.15EFFBFE.Up2Date
+C:\Users\arsen\RiderProjects\SoftServe-cinema\Infrastructure\obj\Debug\net8.0\Infrastructure.csproj.CopyComplete

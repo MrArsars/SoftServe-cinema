@@ -1,6 +1,8 @@
+using Core.Interfaces;
+
 namespace Core.Models;
 
-public class Place
+public class Place : IEntity
 {
     public Guid Id { get; set; }
     public int RowNumber { get; set; }

@@ -1,8 +1,8 @@
-using System.ComponentModel.DataAnnotations.Schema;
+using Core.Interfaces;
 
-namespace Core.Models;
+namespace Core.Models.Ticket;
 
-public class Ticket
+public class Ticket : IEntity
 {
     public Guid Id { get; set; }
     public Guid UserId { get; set; }

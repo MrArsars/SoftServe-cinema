@@ -4,7 +4,7 @@
     {
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> GetByIds(List<Guid> guids);
-        TEntity? GetById(int id);
+        TEntity? GetById(Guid id);
         void Insert(TEntity entity);
         void Update(TEntity entity);
         void Delete(int id);

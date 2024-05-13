@@ -1,5 +1,7 @@
 ﻿using Core.Models;
 using Core.Models.Movie;
+using Core.Models.Session;
+using Core.Models.Ticket;
 using Core.Models.User;
 using Microsoft.EntityFrameworkCore;
 

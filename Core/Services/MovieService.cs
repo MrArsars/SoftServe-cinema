@@ -28,7 +28,7 @@ public class MovieService : IMovieService
         return movieDtos.Select(FromDto).ToList();
     }
 
-    public Movie? GetById(int id)
+    public Movie? GetById(Guid id)
     {
         var res = _movieRepository.GetById(id);
         return res is null ? null : FromDto(res);

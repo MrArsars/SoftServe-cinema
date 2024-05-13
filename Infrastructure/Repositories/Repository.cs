@@ -1,9 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using BusinessLogic.Interfaces;
+﻿using BusinessLogic.Interfaces;
 using Core.Interfaces;
-using Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess.Repositories
+namespace Infrastructure.Repositories
 {
     internal class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {
@@ -26,7 +25,7 @@ namespace DataAccess.Repositories
             return dbSet.Where(x => guids.Contains(x.Id)).ToList();
         }
 
-        public TEntity? GetById(int id)
+        public TEntity? GetById(Guid id)
         {
             return dbSet.Find(id);
         }
