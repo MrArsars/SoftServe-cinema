@@ -4,27 +4,27 @@ using Core.Models;
 
 namespace Core.Services;
 
-public class ActorService(IRepository<Actor> actorRepository) : IActorService
+public class PlaceService(IRepository<Place> placeRepository) : IPlaceService
 {
-    public List<Actor> GetAll()
+    public List<Place> GetAll()
     {
-        var res = actorRepository.GetAll().ToList();
+        var res = placeRepository.GetAll().ToList();
         return res;
     }
 
-    public Actor? GetById(Guid id)
+    public Place? GetById(Guid id)
     {
-        var res = actorRepository.GetById(id);
+        var res = placeRepository.GetById(id);
         return res;
     }
 
-    public Actor Update(Actor actor)
+    public Place Update(Place place)
     {
         try
         {
-            actorRepository.Update(actor);
-            actorRepository.Save();
-            return actor;
+            placeRepository.Update(place);
+            placeRepository.Save();
+            return place;
         }
         catch (Exception e)
         {
@@ -33,13 +33,13 @@ public class ActorService(IRepository<Actor> actorRepository) : IActorService
         }
     }
 
-    public Actor Create(Actor actor)
+    public Place Create(Place place)
     {
         try
         {
-            actorRepository.Insert(actor);
-            actorRepository.Save();
-            return actor;
+            placeRepository.Insert(place);
+            placeRepository.Save();
+            return place;
         }
         catch (Exception e)
         {
@@ -48,12 +48,12 @@ public class ActorService(IRepository<Actor> actorRepository) : IActorService
         }
     }
 
-    public bool Delete(Actor actor)
+    public bool Delete(Place place)
     {
         try
         {
-            actorRepository.Delete(actor);
-            actorRepository.Save();
+            placeRepository.Delete(place);
+            placeRepository.Save();
             return true;
         }
         catch (Exception e)
@@ -67,8 +67,8 @@ public class ActorService(IRepository<Actor> actorRepository) : IActorService
     {
         try
         {
-            actorRepository.Delete(id);
-            actorRepository.Save();
+            placeRepository.Delete(id);
+            placeRepository.Save();
             return true;
         }
         catch (Exception e)
