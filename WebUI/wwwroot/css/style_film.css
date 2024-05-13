@@ -45,13 +45,14 @@
 /*Hire*/
 .movies-hire {
   margin: 0 -10px;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 24%));
+  gap: 15px;
 }
 
 .movie-hire {
-  width: calc(25% - 20px);
-  overflow: hidden;
   margin: 0 10px 73px 10px;
-  min-height: 1px;
 }
 
 .movie-hire:focus {

@@ -5,6 +5,7 @@
     <title>SoftCinema</title>
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
     <link rel="stylesheet" href="css/style_s.css" media="all" />
+    <link rel="stylesheet" href="css/style.css" media="all" />
     <link rel="stylesheet" href="css/style_film.css" media="all" />
     <link rel="stylesheet" href="css/fonts.css" />
     <link rel="stylesheet" href="css/libs/sanitize.css" />
@@ -18,13 +19,7 @@
     <link href="https://unpkg.com/tailwindcss@@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body style="overflow: auto">
-    @* <div class="sprite-container"> *@
-    @*     <img src="images/sprite.png" alt="My sprite" class="sprite"> *@
-    @* </div> *@
-    @* <div> *@
-    @*     <script src="js/animate.js"> </script> *@
-    @* </div> *@
-    <div class="site-title" style="width: 100svw;">
+    <div class="site-title">
         <partial name="Header" />
         @RenderBody()
         <partial name="Footer" />
