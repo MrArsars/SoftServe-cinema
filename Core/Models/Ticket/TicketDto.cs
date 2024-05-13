@@ -1,6 +1,8 @@
-namespace Core.Models;
+using Core.Interfaces;
 
-public class TicketDto
+namespace Core.Models.Ticket;
+
+public class TicketDto : IEntity
 {
     public Guid Id { get; set; }
     public Guid UserId { get; set; }

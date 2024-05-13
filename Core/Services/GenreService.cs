@@ -19,7 +19,7 @@ public class GenreService : IGenreService
         return res;
     }
 
-    public Genre? GetById(int id)
+    public Genre? GetById(Guid id)
     {
         var res = _genreRepository.GetById(id);
         return res;

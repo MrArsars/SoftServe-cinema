@@ -5,7 +5,7 @@ namespace Core.Interfaces;
 public interface IGenreService
 {
     List<Genre> GetAll();
-    Genre? GetById(int id);
+    Genre? GetById(Guid id);
     Genre Update(Genre actor);
     Genre Create(Genre genre);
     bool Delete(Genre genre);

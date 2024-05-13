@@ -5,7 +5,7 @@ namespace Core.Interfaces;
 public interface IActorService
 {
     List<Actor> GetAll();
-    Actor? GetById(int id);
+    Actor? GetById(Guid id);
     Actor Update(Actor actor);
     Actor Create(Actor actor);
     bool Delete(Actor actor);

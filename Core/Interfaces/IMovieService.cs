@@ -6,7 +6,7 @@ namespace Core.Interfaces;
 public interface IMovieService
 {
     List<Movie> GetAll();
-    Movie? GetById(int id);
+    Movie? GetById(Guid id);
     Movie Update(Movie movie);
     Movie Create(Movie movie);
     bool Delete(Movie movie);
