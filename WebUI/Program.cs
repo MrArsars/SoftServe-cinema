@@ -12,9 +12,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext(connectionString);
 builder.Services.AddRepository();
-// builder.Services.AddScoped<IActorService, ActorService>();
-// builder.Services.AddScoped<IGenreService, GenreService>();
-builder.Services.AddScoped<IMovieService, MovieService>();
+builder.Services.AddScoped<IActorService, ActorService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
