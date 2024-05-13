@@ -4,27 +4,27 @@ using Core.Models;
 
 namespace Core.Services;
 
-public class ActorService(IRepository<Actor> actorRepository) : IActorService
+public class HallService(IRepository<Hall> hallRepository) : IHallService
 {
-    public List<Actor> GetAll()
+    public List<Hall> GetAll()
     {
-        var res = actorRepository.GetAll().ToList();
+        var res = hallRepository.GetAll().ToList();
         return res;
     }
 
-    public Actor? GetById(Guid id)
+    public Hall? GetById(Guid id)
     {
-        var res = actorRepository.GetById(id);
+        var res = hallRepository.GetById(id);
         return res;
     }
 
-    public Actor Update(Actor actor)
+    public Hall Update(Hall hall)
     {
         try
         {
-            actorRepository.Update(actor);
-            actorRepository.Save();
-            return actor;
+            hallRepository.Update(hall);
+            hallRepository.Save();
+            return hall;
         }
         catch (Exception e)
         {
@@ -33,13 +33,13 @@ public class ActorService(IRepository<Actor> actorRepository) : IActorService
         }
     }
 
-    public Actor Create(Actor actor)
+    public Hall Create(Hall hall)
     {
         try
         {
-            actorRepository.Insert(actor);
-            actorRepository.Save();
-            return actor;
+            hallRepository.Insert(hall);
+            hallRepository.Save();
+            return hall;
         }
         catch (Exception e)
         {
@@ -48,12 +48,12 @@ public class ActorService(IRepository<Actor> actorRepository) : IActorService
         }
     }
 
-    public bool Delete(Actor actor)
+    public bool Delete(Hall hall)
     {
         try
         {
-            actorRepository.Delete(actor);
-            actorRepository.Save();
+            hallRepository.Delete(hall);
+            hallRepository.Save();
             return true;
         }
         catch (Exception e)
@@ -67,8 +67,8 @@ public class ActorService(IRepository<Actor> actorRepository) : IActorService
     {
         try
         {
-            actorRepository.Delete(id);
-            actorRepository.Save();
+            hallRepository.Delete(id);
+            hallRepository.Save();
             return true;
         }
         catch (Exception e)

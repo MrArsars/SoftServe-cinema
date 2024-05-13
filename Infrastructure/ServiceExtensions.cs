@@ -1,8 +1,7 @@
 ﻿using BusinessLogic.Interfaces;
-using DataAccess.Repositories;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Infrastructure.Data;
 
 namespace Infrastructure
 {
