@@ -10,4 +10,9 @@
       <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\css\libs\sanitize.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\libs\style.css" />
+    </ItemGroup>
+
 </Project>

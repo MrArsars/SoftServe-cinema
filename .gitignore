@@ -1,7 +1,6 @@
 # Ignore Visual Studio files
 .vs/
 *.vscode/
-*.sln
 *.suo
 *.user
 *.userprefs
@@ -47,4 +46,5 @@ node_modules/
 # Ignore .NET development directories
 obj/
 bin/
-Core/obj/
+
+WebUI/appsettings.json
