@@ -2,19 +2,8 @@
 body{
   font-family: Arial, sans-serif;
   background-color: #ffffff;
-  display: grid;
   place-content: start space-evenly;
-  height: 100%;
-
-}
-main {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
+  height: 100svh;
 }
 .main-nav_link {
   font-family: Arial, sans-serif;
