@@ -1,6 +1,8 @@
+using Core.Interfaces;
+
 namespace Core.Models;
 
-public class Actor
+public class Actor : IEntity
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;

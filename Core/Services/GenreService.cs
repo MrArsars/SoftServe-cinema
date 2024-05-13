@@ -4,26 +4,33 @@ using Core.Models;
 
 namespace Core.Services;
 
-public class ActorService(IRepository<Actor> actorRepository) : IActorService
+public class GenreService : IGenreService
 {
-    public List<Actor> GetAll()
+    private readonly IRepository<Genre> _genreRepository;
+
+    public GenreService(IRepository<Genre> genreRepository)
     {
-        var res = actorRepository.GetAll().ToList();
+        _genreRepository = genreRepository;
+    }
+
+    public List<Genre> GetAll()
+    {
+        var res = _genreRepository.GetAll().ToList();
         return res;
     }
 
-    public Actor? GetById(int id)
+    public Genre? GetById(int id)
     {
-        var res = actorRepository.GetById(id);
+        var res = _genreRepository.GetById(id);
         return res;
     }
 
-    public Actor Update(Actor actor)
+    public Genre Update(Genre actor)
     {
         try
         {
-            actorRepository.Update(actor);
-            actorRepository.Save();
+            _genreRepository.Update(actor);
+            _genreRepository.Save();
             return actor;
         }
         catch (Exception e)
@@ -33,13 +40,13 @@ public class ActorService(IRepository<Actor> actorRepository) : IActorService
         }
     }
 
-    public Actor Create(Actor actor)
+    public Genre Create(Genre genre)
     {
         try
         {
-            actorRepository.Insert(actor);
-            actorRepository.Save();
-            return actor;
+            _genreRepository.Insert(genre);
+            _genreRepository.Save();
+            return genre;
         }
         catch (Exception e)
         {
@@ -48,12 +55,12 @@ public class ActorService(IRepository<Actor> actorRepository) : IActorService
         }
     }
 
-    public bool Delete(Actor actor)
+    public bool Delete(Genre genre)
     {
         try
         {
-            actorRepository.Delete(actor);
-            actorRepository.Save();
+            _genreRepository.Delete(genre);
+            _genreRepository.Save();
             return true;
         }
         catch (Exception e)
@@ -67,8 +74,8 @@ public class ActorService(IRepository<Actor> actorRepository) : IActorService
     {
         try
         {
-            actorRepository.Delete(id);
-            actorRepository.Save();
+            _genreRepository.Delete(id);
+            _genreRepository.Save();
             return true;
         }
         catch (Exception e)

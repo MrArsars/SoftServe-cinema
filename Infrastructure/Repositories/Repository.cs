@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BusinessLogic.Interfaces;
-using Infrastructure.Data;
+using Core.Interfaces;
+using Infrastructure;
 
 namespace DataAccess.Repositories
 {
-    internal class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    internal class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {
         internal CinemaDbContext context;
         internal DbSet<TEntity> dbSet;
@@ -18,6 +19,11 @@ namespace DataAccess.Repositories
         public IEnumerable<TEntity> GetAll()
         {
             return dbSet.ToList();
+        }
+
+        public IEnumerable<TEntity> GetByIds(List<Guid> guids)
+        {
+            return dbSet.Where(x => guids.Contains(x.Id)).ToList();
         }
 
         public TEntity? GetById(int id)

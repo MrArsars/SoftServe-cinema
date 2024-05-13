@@ -1,3 +1,14 @@
-﻿@{
+﻿@model IEnumerable<Core.Models.Movie.Movie>
+
+@{
     ViewData["Title"] = "Home Page";
+}
+
+@foreach (var m in Model)
+{
+    <h1>@m.Name</h1>
+    foreach (var a in @m.Actors)
+    {
+        <p>@a.Name @a.Surname</p>
+    }
 }
