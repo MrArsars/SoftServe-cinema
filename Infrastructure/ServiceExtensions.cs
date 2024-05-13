@@ -2,7 +2,6 @@
 using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Infrastructure.Data;
 
 namespace Infrastructure
 {

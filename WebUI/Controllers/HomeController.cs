@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Core.Interfaces;
 using Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.Models;
@@ -8,18 +9,20 @@ namespace WebUI.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly IActorService _actorService;
+    // private readonly IActorService _actorService;
+    private readonly IMovieService _movieService;
 
-    public HomeController(ILogger<HomeController> logger, IActorService actorService)
+    public HomeController(ILogger<HomeController> logger, IMovieService movieService)
     {
         _logger = logger;
-        _actorService = actorService;
+        // _actorService = actorService;
+        _movieService = movieService;
     }
 
     public IActionResult Index()
     {
-        var actors = _actorService.GetAll();
-        return View(actors);
+        var movies = _movieService.GetAll();
+        return View(movies);
     }
 
     public IActionResult Privacy()
