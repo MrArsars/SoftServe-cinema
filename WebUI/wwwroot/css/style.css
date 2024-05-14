@@ -157,7 +157,6 @@ h2 {
   font-size: 24px;
   margin: 0;
   padding-bottom: 20px;
-  border-bottom: 1px solid #ccc;
 }
 
 ul {
@@ -231,11 +230,9 @@ footer {
   position: fixed;
   position: absolute;
   left: 50%;
-}
-.sprite {
-  position: fixed;
   top: 50%;
   transform: translate(-50%, -50%);
+  display: none;
 }
 .scroll-container {
   height: 100vh; /* Висота елемента відповідає висоті вікна браузера */

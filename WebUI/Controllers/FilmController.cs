@@ -1,31 +1,25 @@
 using System.Diagnostics;
 using Core.Interfaces;
-using Core.Models.Movie;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.Models;
 
 namespace WebUI.Controllers;
 
-public class HomeController : Controller
+public class FilmController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IMovieService _movieService;
 
-    public HomeController(ILogger<HomeController> logger, IMovieService movieService)
+    public FilmController(ILogger<HomeController> logger, IMovieService movieService)
     {
         _logger = logger;
         _movieService = movieService;
     }
-
-    public IActionResult Index()
+    
+    public IActionResult Index(Guid id)
     {
-        var movies = _movieService.GetAll();
-        return View(movies);
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
+        var movie = _movieService.GetById(id);
+        return View(movie);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
