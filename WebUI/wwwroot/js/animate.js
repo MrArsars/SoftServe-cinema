@@ -1,6 +1,7 @@
 window.onload = function() {
     var logo = document.querySelector('.sprite');
     var siteTitle = document.querySelector('.site-title');
+    logo.style.display = "block";
     logo.style.opacity = 0;
     siteTitle.style.opacity = 0;
     var animation = logo.animate([{opacity: 0}, {opacity: 1}], 1500);
