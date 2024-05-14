@@ -11,10 +11,10 @@
             <div class="items-center justify-between block">
                 <div class="flex items-center mb-4 mx-auto items-center justify-between">
                     <div class="flex items-center space-x-4">
-                        <form class="pr-3" action="#" method="GET">
+                        <form class="pr-3" action="" method="GET">
                             <label for="movie-search" class="sr-only">Search</label>
                             <div class="relative w-48 mt-1 sm:w-64 xl:w-96">
-                                <input type="text" name="email" id="movie-search"
+                                <input type="text" name="search" id="movie-search"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="Search for movie">
                             </div>
@@ -33,7 +33,8 @@
                                             clip-rule="evenodd"></path>
                                     </svg>
                                 </a>
-                                <a href="#"
+                                <a href="#" id="drawer-delete-movie-toggle" data-drawer-target="drawer-delete-movie-toggle"
+                                    data-drawer-show="drawer-delete-movie-toggle" aria-controls="drawer-delete-movie-toggle"
                                     class="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -109,7 +110,7 @@
                             </td>
                             <td class="p-4 text-sm font-normal text-gray-500">
                                 @movie.Id</td>
-                            <td class="p-4 text-sm font-normal text-gray-500">
+                            <td id="search-this" class="p-4 text-sm font-normal text-gray-500">
                                 @movie.Name</td>
                             <td class="p-4 font-normal text-gray-500">
                                 @foreach (var genre in movie.Genres)
@@ -121,9 +122,7 @@
                                 <img src='@movie.ImageUrl' />
                             </td>
                             <td class="p-4 font-medium text-gray-900">
-                                <iframe
-                                    src="@movie.TrailerUrl"
-                                    title="YouTube video player" frameborder="0"
+                                <iframe src="@movie.TrailerUrl" title="YouTube video player" frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </td>
@@ -158,11 +157,12 @@
                                     </svg>
                                     Update
                                 </button>
-                                <button type="button" id="deleteProductButton"
-                                    data-drawer-target="drawer-delete-product-default"
-                                    data-drawer-show="drawer-delete-product-default"
-                                    aria-controls="drawer-delete-product-default" data-drawer-placement="right"
-                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+                                <button type="button" id="drawer-delete-movie-toggle" data-drawer-target="drawer-delete-movie-toggle"
+                                    data-drawer-show="drawer-delete-movie-toggle" aria-controls="drawer-delete-movie-toggle"
+                                    data-drawer-placement="right" data-drawer-placement="right"
+                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white
+                                    bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300
+                                    dark:focus:ring-red-900">
                                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -176,53 +176,6 @@
                     }
                 </tbody>
             </table>
-            <div
-                class="sticky bottom-0 right-0 items-center w-full p-4 bg-white border-t border-gray-200 sm:flex sm:justify-between dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex items-center mb-4 sm:mb-0">
-                    <a href="#"
-                        class="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </a>
-                    <a href="#"
-                        class="inline-flex justify-center p-1 mr-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </a>
-                    <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Showing <span
-                            class="font-semibold text-gray-900 dark:text-white">1-20</span> of <span
-                            class="font-semibold text-gray-900 dark:text-white">2290</span></span>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <a href="#"
-                        class="inline-flex items-center justify-center flex-1 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                        <svg class="w-5 h-5 mr-1 -ml-1" fill=" currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        Previous
-                    </a>
-                    <a href="#"
-                        class="inline-flex items-center justify-center flex-1 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                        Next
-                        <svg class="w-5 h-5 ml-1 -mr-1" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
         </div>
 
 
@@ -330,53 +283,6 @@
             </div>
         </div>
 
-        <div
-            class="sticky bottom-0 right-0 items-center w-full p-4 bg-white border-t border-gray-200 sm:flex sm:justify-between dark:bg-gray-800 dark:border-gray-700">
-            <div class="flex items-center mb-4 sm:mb-0">
-                <a href="#"
-                    class="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </a>
-                <a href="#"
-                    class="inline-flex justify-center p-1 mr-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </a>
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Showing <span
-                        class="font-semibold text-gray-900 dark:text-white">1-20</span> of <span
-                        class="font-semibold text-gray-900 dark:text-white">2290</span></span>
-            </div>
-            <div class="flex items-center space-x-3">
-                <a href="#"
-                    class="inline-flex items-center justify-center flex-1 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                    <svg class="w-5 h-5 mr-1 -ml-1" fill=" currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    Previous
-                </a>
-                <a href="#"
-                    class="inline-flex items-center justify-center flex-1 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                    Next
-                    <svg class="w-5 h-5 ml-1 -mr-1" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </a>
-            </div>
-        </div>
-
 
 
         <!-- Add Movie Drawer -->
@@ -463,14 +369,13 @@
         </div>
 
         <!-- Delete Movie Drawer -->
-        <div id="drawer-delete-product-default"
+        <div id="drawer-delete-product"
             class="hidden fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800"
             tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
             <h5 id="drawer-label"
                 class="inline-flex items-center text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Delete
                 item</h5>
-            <button type="button" data-drawer-dismiss="drawer-delete-product-default"
-                aria-controls="drawer-delete-product-default"
+            <button type="button" data-drawer-dismiss="drawer-delete-product" aria-controls="drawer-delete-product"
                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg">
@@ -492,7 +397,7 @@
             </a>
             <a href="#"
                 class="text-gray-900 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 border border-gray-200 font-medium inline-flex items-center rounded-lg text-sm px-3 py-2.5 text-center dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-                data-drawer-hide="drawer-delete-product-default">
+                data-drawer-hide="drawer-delete-product">
                 No, cancel
             </a>
         </div>
@@ -508,6 +413,18 @@
 
     createMovieCloseButton.addEventListener('click', () => {
         createMovieDrawer.classList.remove('drawer-open');
+    });
+
+    const deleteMovieToggleButton = document.getElementById('drawer-delete-movie-toggle');
+    const deleteMovieCloseButton = document.getElementById('drawer-delete-movie-close');
+    const deleteMovieDrawer = document.getElementById('drawer-delete-product');
+
+    deleteMovieToggleButton.addEventListener('click', () => {
+        deleteMovieDrawer.classList.toggle('drawer-open');
+    });
+
+    deleteMovieCloseButton.addEventListener('click', () => {
+        deleteMovieDrawer.classList.remove('drawer-open');
     });
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -541,6 +458,48 @@
             }
         });
     });
+    document.addEventListener("DOMContentLoaded", function () {
+        const checkboxAll = document.getElementById("checkbox-all");
+        const checkboxes = document.querySelectorAll('input[type="checkbox"][id^="checkbox-"]');
+
+        checkboxAll.addEventListener("change", function () {
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = checkboxAll.checked;
+            });
+        });
+
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener("change", function () {
+                checkboxAll.checked = [...checkboxes].every(function (cb) {
+                    return cb.checked;
+                });
+            });
+        });
+    });
+    // Wait for the DOM to be fully loaded
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the search input element
+        const searchInput = document.getElementById('movie-search');
+
+        // Add event listener for input changes
+        searchInput.addEventListener('input', function () {
+            // Get the search query value
+            const query = searchInput.value.trim().toLowerCase();
+
+            // Get all movie rows
+            const movieRows = document.querySelectorAll('tbody tr');
+
+            // Loop through each movie row and check if it matches the search query
+            movieRows.forEach(row => {
+                const name = row.querySelector('#search-this').textContent.toLowerCase();
+                const shouldShow = name.includes(query);
+
+                // Toggle the display of the row based on the search result
+                row.style.display = shouldShow ? 'table-row' : 'none';
+            });
+        });
+    });
+
 
 </script>
 <style>
