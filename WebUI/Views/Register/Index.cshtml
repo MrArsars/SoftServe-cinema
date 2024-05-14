@@ -1,22 +1,46 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 }
 <main style="overflow: auto" class="main-body">
 	<section id="Login">
 		<div class="form-container">
 			<h2 class="mb-4">Register</h2>
-			<form id="registerForm" class="bootstrap-form">
+			<form id="registerForm" class="bootstrap-form" method="post" action="@Url.Action("Register", "Account")">
 				<div class="mb-3">
 					<label for="registerName" class="form-label">Full Name</label>
-					<input type="text" class="form-control" id="registerName" name="registerName" required>
+					<input 
+						type="text" 
+						placeholder="Enter your name"
+						class="form-control" 
+						id="registerName" 
+						name="registerName" 
+						value=""
+						required
+					>
 				</div>
 				<div class="mb-3">
 					<label for="registerEmail" class="form-label">Email address</label>
-					<input type="email" class="form-control" id="registerEmail" name="registerEmail" required>
+					<input 
+						type="email" 
+						placeholder="Enter your email"
+						class="form-control" 
+						id="registerEmail" 
+						name="registerEmail" 
+						value=""
+						required
+					>
 				</div>
 				<div class="mb-3">
 					<label for="registerPassword" class="form-label">Password</label>
-					<input type="password" class="form-control" id="registerPassword" name="registerPassword" required>
+					<input 
+						type="password" 
+						placeholder="Enter your password"
+						class="form-control" 
+						id="registerPassword" 
+						name="registerPassword" 
+						value=""
+						required
+					>
 				</div>
 				<button type="submit" class="btn btn-success">Register</button>
 			</form>
