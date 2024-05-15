@@ -1,7 +1,7 @@
 @model Core.Models.Session.Session
 
 <tr class="schedule-table__row category_14" style="position: static; left: 0px; top: 61px;">
-    <td class="schedule-table__col">@Model.DateTimeStart.ToString("hh:mm")</td>
+    <td class="schedule-table__col">@Model.DateTimeStart.ToString("HH:mm")</td>
     <td class="schedule-table__col">
         <a asp-controller="Film" asp-action="Index" asp-route-id="@Model.Movie.Id">
             <div class="schedule-table__col_name" style="height:100%;width:100%">

@@ -1,3 +1,4 @@
+
 .site-title{
   display: flex;
   flex-direction: column;
@@ -52,13 +53,26 @@ header.scrolled .main-nav_link {
 
 .current-page_yellow a {
   font-family: Arial, sans-serif;
-  font-size: 20px;
+  font-size: 15px;
   text-decoration: none;
   display: inline-block;
   border-bottom-width: 2px;
   border-bottom-color: transparent;
   border-bottom-style: solid;
-  color: rgb(255, 238, 0);
+  color: rgb(255, 255, 255);
+}
+
+.current-page-black {
+  display: inline-block; /* Зробити елемент блоковим для налаштування ширини та висоти */
+  background-color: black; /* Колір фону - чорний */
+  padding: 10px 20px; /* Відступи всередині кнопки (верхній/нижній, лівий/правий) */
+  border-radius: 20px; /* Закруглення кутів */
+}
+
+.current-page-black a {
+  color: white; /* Колір тексту - білий */
+  text-decoration: none; /* Відміна підкреслення посилання */
+  font-weight: bold; /* Товщина шрифту - жирний */
 }
 
 .current-page_orange a {
@@ -75,14 +89,20 @@ header.scrolled .main-nav_link {
   max-width: 95%; /* Змініть на більший відсоток або певне значення, щоб контент не стискався */
   margin: 0 auto;
 }
-/* Шапка сайту */
+
+/* Спеціальний стиль для елемента "Увійти" */
+.current-page_yellow {
+  margin-right: auto; /* Відсування елементу "Увійти" вправо */
+}
+
 header {
   /* Приклад стилів для header */
   width: 100%;
   background-color: transparent;
-  color: #fff;
+  color: rgba(255, 255, 255, 0);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  /*justify-content: space-between;*/
   align-items: center;
   padding: 10px 20px;
   position: fixed;
@@ -91,9 +111,38 @@ header {
   z-index: 1;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   transition: background-color 1.5s ease; /* Додайте плавний перехід для зміни фонового кольору */
-  
+}
+/* ХЕДЕР */
+.logo {
+  order: 1;
+  margin-right: auto; /* Зсув логотипу вправо */
 }
 
+nav {
+  order: 2;
+}
+
+.login {
+  order: 3;
+  margin-left: auto; /* Зсув блоку "Увійти" вліво */
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px; /* Відступ між пунктами меню */
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+/* ХЕДЕР */
 header.scrolled {
   background-color: rgba(19, 19, 19, 0.8); /* Напівпрозорий темно-сірий фон */
 }
@@ -497,7 +546,7 @@ section {
 }
 
 .movie-hire__icon:hover {
-  background-color: #5aa900;
+  background-color: #d9c010;
 }
 
 .movie-hire__icon:hover:before {
@@ -761,4 +810,158 @@ a:focus {
   box-shadow: inset 0 0 0 1px #d9c010;
   background-color: #5aa900;
   color: #fff;
+}
+/*-------------------------------------------------------------------
+    Schedule
+-------------------------------------------------------------------*/
+.schedule {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.schedule_alt {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-bottom: 65px;
+}
+
+.schedule__list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.schedule__list_alt {
+  margin-left: auto;
+}
+
+.schedule__item {
+  font-size: 0;
+  line-height: 0;
+}
+
+.schedule__item:first-child .schedule__btn {
+  -webkit-border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 5px;
+}
+
+.schedule__item:last-child .schedule__btn {
+  -webkit-border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0;
+}
+
+.schedule__btn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 5px 10px;
+  vertical-align: top;
+  height: 100%;
+  background-color: transparent;
+  border: 1px solid #d9c010;
+  color: #d9c010;
+  font-size: 14px;
+  line-height: 1.2;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+}
+
+.schedule__btn_current:before {
+  content: '';
+  background: url("../images/spritesheet.png") -77px -32px no-repeat;
+  width: 11px;
+  height: 9px;
+  margin-right: 13px;
+}
+
+.schedule__btn:hover, .schedule__btn_current {
+  background-color: #d9c010;
+  color: #312204;
+}
+
+.schedule__btn_all {
+  margin-left: 18px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.schedule__btn_invert {
+  border-color: #312204;
+  color: #312204;
+}
+
+.schedule__btn_invert:hover {
+  background-color: #312204;
+  color: #d9c010;
+}
+
+.single-schedule {
+  border-top: 1px solid rgba(151, 151, 151, 0.3);
+  padding-top: 25px;
+  margin: 0 0 61px -webkit-calc(23.6522% + 17px);
+  margin: 0 0 61px calc(23.6522% + 17px);
+  overflow: hidden;
+}
+
+.single-schedule__row {
+  border-bottom: 1px solid rgba(151, 151, 151, 0.3);
+  padding: 0 0 26px;
+  margin-bottom: 25px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.single-schedule__row:last-child {
+  margin-bottom: 0;
+}
+
+.single-schedule__col {
+  border: 1px solid rgba(146, 146, 146, 0.55);
+  padding: 10px 15px;
+  margin: 0 15px 15px 0;
+}
+
+.single-schedule__time {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.single-schedule__format {
+  color: #d9c010;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.single-schedule-title {
+  font-weight: 300;
+  color: #fff2d3;
+  margin: 0 0 25px;
+}
+
+.single-schedule-title b {
+  font-weight: 700;
+  color: #d9c010;
 }
