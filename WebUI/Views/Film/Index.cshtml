@@ -1,0 +1,50 @@
+﻿@model Core.Models.Movie.Movie
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<main class="my-32 flex flex-column items-center">
+    <div class="max-w-screen-2xl flex items-start w-full flex-column">
+        <h2 class="text-4xl font-bold my-12">@Model.Name</h2>
+        <div class="w-full flex flex-row mb-20">
+            <img src="@Model.ImageUrl"  alt="" class="w-96 mr-8"/>
+            <div class="flex flex-column">
+                <div class="flex flex-row text-xl font-bold mb-3">@Model.Name <div class="ml-4 border-2 border-black rounded-lg">@Model.AgeRestriction+</div></div>
+                <div class="flex flex-row">
+                    <div class="border border-amber-400 rounded-lg px-1">@(Model.Duration / 60) години @(Model.Duration % 60) хвилин</div>
+                    @foreach (var g in Model.Genres)
+                    {
+                        <div class="border border-amber-400 rounded-lg px-1 ml-2">@g.Name</div>
+                    }
+                </div>
+                <p class="mt-3 text-lg">@Model.Description</p>
+            </div>
+        </div>
+        <div class="w-full flex flex-row mb-20">
+            <iframe width="760" height="430" src="@Model.TrailerUrl" 
+                    title="YouTube video player" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen></iframe>
+            <div class="flex flex-column ml-12">
+                <div class="flex flex-row mb-2">
+                    <p class="font-bold text-m">Актори: </p>
+                    <p class="ml-2">@(string.Join(", ", Model.Actors.Select(a => $"{a.Name} {a.Surname}")))</p>
+                </div>
+                <div class="flex flex-row mb-2">
+                    <p class="font-bold text-m">Жанр: </p>
+                    <p class="ml-2">@(string.Join(", ", Model.Genres.Select(g => $"{g.Name}")))</p>
+                </div>
+                <div class="flex flex-row mb-2">
+                    <p class="font-bold text-m">Тривалість: </p>
+                    <p class="ml-2">@Model.Duration хв.</p>
+                </div>
+                <div class="flex flex-row mb-2">
+                    <p class="font-bold text-m">Вікові обмеження: </p>
+                    <p class="ml-2">@Model.AgeRestriction+</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

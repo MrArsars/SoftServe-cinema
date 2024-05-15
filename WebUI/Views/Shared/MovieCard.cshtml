@@ -1,0 +1,24 @@
+@model Core.Models.Movie.Movie
+
+<figure class="movie-hire movies date_01">
+    <div class="movie-hire__img-wrap">
+        <img src="@Model.ImageUrl" alt="" class="movie-hire__img">
+        <div class="movie-hire__icons">
+            <a asp-controller="Film" asp-action="Index" asp-route-id="@Model.Id" class="movie-hire__icon movie-hire__icon_ticket" tabindex="-1"></a>
+            <a href="#" class="movie-hire__icon movie-hire__icon_play" data-youtube-id="Zw0V4UlRc2g" data-movie-name="@Model.Name" tabindex="-1"></a>
+        </div>
+    </div>
+    <figcaption>
+        <div class="movie-hire__title">
+            <a asp-controller="Film" asp-action="Index" asp-route-id="@Model.Id" tabindex="-1"> @Model.Name </a>
+            <span class="movie-hire__badge"></span>
+        </div>
+        <div class="movie-hire__tags">
+            <div class="movie-hire__tag">@Model.AgeRestriction+</div>
+            @foreach (var g in Model.Genres!)
+            {
+                <div class="movie-hire__tag">@g.Name</div>
+            }
+        </div>
+    </figcaption>
+</figure>

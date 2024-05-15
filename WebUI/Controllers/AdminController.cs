@@ -9,15 +9,32 @@ namespace WebUI.Controllers;
 public class AdminController : Controller
 {
     private readonly IMovieService _movieService;
+
     public AdminController(IMovieService movieService)
     {
         _movieService = movieService;
     }
 
+
     public IActionResult Index()
+    {
+        return View();
+    }
+
+    public IActionResult Sessions()
+    {
+        return View();
+    }
+
+    public IActionResult Movies()
     {
         var movies = _movieService.GetAll();
         return View(movies);
+    }
+
+    public IActionResult AddMovie()
+    {
+        return View();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
