@@ -9,6 +9,13 @@ body{
   place-content: start space-evenly;
   height: 100svh;
 }
+main
+{
+  /* Стилі для main */
+  padding-top: 20px; /* Відступ зверху для уникнення накладання на header */
+  margin-top: 20px; /* Додатковий відступ зверху, якщо необхідно */
+  overflow: auto; /* Зберігаємо overflow */
+}
 .main-nav_link {
   font-family: Arial, sans-serif;
   font-size: 20px;
@@ -70,6 +77,8 @@ header.scrolled .main-nav_link {
 }
 /* Шапка сайту */
 header {
+  /* Приклад стилів для header */
+  width: 100%;
   background-color: transparent;
   color: #fff;
   display: flex;
@@ -79,10 +88,10 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
   z-index: 1;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   transition: background-color 1.5s ease; /* Додайте плавний перехід для зміни фонового кольору */
+  
 }
 
 header.scrolled {
@@ -174,7 +183,7 @@ img {
 }
 
 h3 {
-  font-size: 18px;
+  font-size: 30px;
   margin: 10px 0;
 }
 
@@ -191,7 +200,6 @@ a {
   background-color: #0e0e0e;
   padding-bottom: 55px;
 }
-
 footer {
   display: block;
   unicode-bidi: isolate;
@@ -334,10 +342,12 @@ section {
   unicode-bidi: isolate;
 }
 .container {
-  max-width: 1150px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
   padding-right: 10px;
   padding-left: 10px;
+  
 }
 
 .container_cabinet {
@@ -665,6 +675,8 @@ a:focus {
 -------------------------------------------------------------------*/
 .schedule-table {
   width: 100%;
+  position: relative;
+  /*height: 2582.94px;*/
 }
 
 .schedule-table__row {
