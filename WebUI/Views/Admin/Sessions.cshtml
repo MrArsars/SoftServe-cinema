@@ -1,81 +1,171 @@
-
+@model List<Core.Models.Session.Session>
 @{
     ViewData["Title"] = "Sessions";
 }
-<!-- Sessions Administration -->
-<h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">All Sessions</h1>
-<div class="flex flex-row">
-    <div
-        class="my-4 mx-auto items-center justify-between block sm:flex md:divide-x md:divide-gray-100 dark:divide-gray-700">
-        <div class="flex items-center mx-auto  sm:mb-0">
-            <form class="sm:pr-3" action="#" method="GET">
-                <label for="session-search" class="sr-only">Search</label>
-                <div class="relative w-48 mt-1 sm:w-64 xl:w-96">
-                    <input type="text" name="email" id="session-search"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Search for session">
-                </div>
-            </form>
+<main class="mt-5">
+    <!-- Sessions Administration -->
+    <h1 class="text-2xl font-bold font-semibold text-gray-900 align-center">Всі сеанси</h1>
+    <div class="items-center justify-between block">
+        <div class="flex items-center mb-4 mx-auto items-center justify-between">
+            <div class="flex items-center space-x-4 ml-2">
+                <form class="pr-3" action="" method="GET">
+                    <label for="sessions-search" class="sr-only">Search</label>
+                    <div class="relative w-48 mt-1 sm:w-64 xl:w-96">
+                        <input type="text" name="search" id="sessions-search"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Пошук сеансу">
+                    </div>
+                </form>
+            </div>
+            <button id="drawer-create-session-toggle"
+                class="text-white bg-green-500 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 ml-auto focus:ring-4 focus:ring-green-300 "
+                type="button">
+                Додати сеанс
+            </button>
         </div>
-        <button id="createProductButton"
-            class="flex mr-auto text-white bg-green-500 hover:bg-green-700 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
-            type="button" data-drawer-target="drawer-create-product-default"
-            data-drawer-show="drawer-create-product-default" aria-controls="drawer-create-product-default"
-            data-drawer-placement="right">
-            Add new session
-        </button>
     </div>
-</div>
-<div class="flex flex-col">
-    <div class="overflow-x-auto">
-        <div class="inline-block min-w-full align-middle">
-            <div class="overflow-hidden shadow">
-                <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-600">
-                    <thead class="bg-gray-100 dark:bg-gray-700">
-                        <tr>
-                            <th scope="col" class="p-4">
-                                <div class="flex items-center">
-                                    <input id="checkbox-all" aria-describedby="checkbox-1" type="checkbox"
-                                        class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="checkbox-all" class="sr-only">checkbox</label>
-                                </div>
-                            </th>
-                            <th scope="col"
-                                class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                ID
-                            </th>
-                            <th scope="col"
-                                class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                Movie
-                            </th>
-                            <th scope="col"
-                                class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                Hall
-                            </th>
-                            <th scope="col"
-                                class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                Date/Time
-                            </th>
-                            <th scope="col"
-                                class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                Price
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-
-
-
-
-                        <!-- 
-
-                                    -->
-
-
-
-                    </tbody>
-                </table>
+    <div class="flex flex-col">
+        <div class="overflow-x-auto">
+            <div class="inline-block min-w-full align-middle">
+                <div class="overflow-hidden shadow">
+                    <table class="w-full">
+                        <tbody>
+                            <tr class="text-lg leading-6 font-medium transition duration-300 transform-none bg-gray-300"
+                                style="position: static; left: 0px; top: 0px;">
+                                <th class="basis-1/12 rounded-tl-2xl border-b border-yellow-400 border-r p-4">
+                                    <div class="flex items-center">
+                                        <input id="checkbox-all" type="checkbox"
+                                            class="w-4 h-4 border-gray-300 rounded bg-gray-50">
+                                        <label for="checkbox-all" class="sr-only">checkbox</label>
+                                    </div>
+                                </th>
+                                <th
+                                    class="border-b border-yellow-400 border-r w-40 bg-opacity-50 text-center text-lg font-bold">
+                                    @DateTime.Now.ToString("ddd, dd.MM")</th>
+                                <th
+                                    class="border-b border-yellow-400 border-r bg-opacity-50 text-center text-lg font-bold">
+                                    Назва фільму</th>
+                                <th
+                                    class="border-b border-yellow-400 border-r bg-opacity-50 text-center text-lg font-bold">
+                                    Зал</th>
+                                <th
+                                    class="border-b border-yellow-400 border-r bg-opacity-50 text-center text-lg font-bold">
+                                    Формат</th>
+                                <th
+                                    class="border-b border-yellow-400 border-r bg-yellow-300 text-center text-lg font-bold">
+                                    Змінити</th>
+                                <th
+                                    class="rounded-tr-2xl border-b border-yellow-400 bg-red-500 text-center text-lg font-bold">
+                                    Видалити</th>
+                            </tr>
+                            @foreach (var session in Model)
+                            {
+                                <tr id="output"
+                                    class="text-lg leading-6 font-medium transition duration-300 transform-none hover:bg-gray-300"
+                                    style="position: static; left: 0px; top: 61px;">
+                                    <td class="w-4 p-4 border-b border-gray-200 border-r hover:border-white">
+                                        <div class="flex items-center">
+                                            <input id="checkbox-@session.Id" type="checkbox"
+                                                class="w-4 h-4 border-gray-300 rounded bg-gray-50">
+                                            <label for="checkbox-@session.Id" class="sr-only">checkbox</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center border-b border-gray-200 border-r hover:border-white">
+                                        @session.DateTimeStart.ToString("hh:mm")</td>
+                                    <td class="text-center border-b border-gray-200 border-r hover:border-white">
+                                        <a asp-controller="Film" asp-action="Index" asp-route-id="@session.Movie.Id">
+                                            <div id="search-param" class="schedule-table__col_name"
+                                                style="height:100%;width:100%">
+                                                @session.Movie.Name
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td class="text-center border-b border-gray-200 border-r hover:border-white">
+                                        @session.Hall.Name</td>
+                                    <td class="text-center border-b border-gray-200 border-r hover:border-white">2D</td>
+                                    <td class="drawer-edit-session-toggle text-center border-b border-gray-200 border-r hover:border-white">
+                                        <button type="button" id="90391" class="font-bold hover:text-yellow-500 transition-all duration-300">Змінити</button>
+                                    </td>
+                                    <td class="drawer-delete-session-toggle text-center border-b border-gray-200 hover:border-white">
+                                        <button type="button" id="90391" class="font-bold hover:text-red-500 transition-all duration-300">Видалити</button>
+                                    </td>
+                                </tr>
+                            }
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <div id="deleteSessionDrawerContainer"
+         class="hidden fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800"
+         tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
+        @{
+        var deleteSessionPartial = Html.Partial("DeleteSession");
+        }
+        @deleteSessionPartial
+    </div>
+    <div id="addSessionDrawerContainer"
+        class="hidden fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800"
+        tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
+        @{
+            var addSessionPartial = Html.Partial("AddSession");
+        }
+        @addSessionPartial
+    </div>
+
+    <div id="editSessionDrawerContainer"
+        class="hidden fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800"
+        tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
+        @{
+            var editSessionPartial = Html.Partial("EditSession");
+        }
+        @editSessionPartial
+    </div>
+</main>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("sessions-search");
+        const rows = document.querySelectorAll("#output");
+
+        searchInput.addEventListener("input", function (e) {
+            const searchTerm = e.target.value.trim().toLowerCase();
+
+            rows.forEach(row => {
+                const sessionName = row.querySelector("#search-param").textContent.toLowerCase();
+
+                if (sessionName.includes(searchTerm)) {
+                    row.style.display = "table-row";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        });
+    });
+    $(document).ready(function () {
+        $('#drawer-create-session-toggle').click(function () {
+            $('#addSessionDrawerContainer').toggleClass('hidden');
+        });
+
+        $('#drawer-create-session-close').click(function () {
+            $('#addSessionDrawerContainer').toggleClass('hidden');
+        });
+    });
+    $(document).ready(function () {
+        $('.drawer-delete-session-toggle').click(function () {
+            $('#deleteSessionDrawerContainer').toggleClass('hidden');
+        });
+
+        $('#drawer-delete-session-close').click(function () {
+            $('#deleteSessionDrawerContainer').toggleClass('hidden');
+        });
+    });
+    $(document).ready(function () {
+        $('.drawer-edit-session-toggle').click(function () {
+            $('#editSessionDrawerContainer').toggleClass('hidden');
+        });
+
+        $('#drawer-edit-session-close').click(function () {
+            $('#editSessionDrawerContainer').toggleClass('hidden');
+        });
+    });
+</script>

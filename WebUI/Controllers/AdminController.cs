@@ -8,10 +8,12 @@ namespace WebUI.Controllers;
 
 public class AdminController : Controller
 {
+    private readonly ISessionService _sessionService;
     private readonly IMovieService _movieService;
 
-    public AdminController(IMovieService movieService)
+    public AdminController(IMovieService movieService, ISessionService sessionService)
     {
+        _sessionService = sessionService;
         _movieService = movieService;
     }
 
@@ -23,7 +25,8 @@ public class AdminController : Controller
 
     public IActionResult Sessions()
     {
-        return View();
+        var sessions = _sessionService.GetAll();
+        return View(sessions);
     }
 
     public IActionResult Movies()
