@@ -1,6 +1,8 @@
 using Core.Interfaces;
+using Core.Models.User;
 using Core.Services;
 using Infrastructure;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext(connectionString);
 builder.Services.AddRepository();
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<CinemaDbContext>();
 builder.Services.AddScoped<IActorService, ActorService>();
 builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddScoped<ISessionService, SessionService>();
@@ -29,6 +33,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

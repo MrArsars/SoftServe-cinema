@@ -1,35 +1,55 @@
-
 <header>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/head.js"> </script>
     <div class="logo">
-        <a asp-action="Index" asp-controller="Home"><img src="~/images/logoheader_3.png" alt="Auto Scout logoheader"></a>
+        <a asp-action="Index" asp-controller="Home">
+            <img src="~/images/logoheader_3.png" alt="Auto Scout logoheader">
+        </a>
     </div>
     <nav>
         <ul>
             <li class="current-page_red">
                 <a asp-action="Index"
-                   asp-controller="Home" class="current-page_red">Афіша</a>
+                   asp-controller="Home" class="current-page_red">
+                    Афіша
+                </a>
             </li>
             <li class="main-nav_item">
                 <a asp-action="Index"
-                   asp-controller="Schedule" class="main-nav_link" data-category="content">Розклад</a>
+                   asp-controller="Schedule" class="main-nav_link" data-category="content">
+                    Розклад
+                </a>
             </li>
             <li class="main-nav_item">
                 <a asp-action="Index"
-                   asp-controller="Contacts" class="main-nav_link">Контакти</a>
+                   asp-controller="Contacts" class="main-nav_link">
+                    Контакти
+                </a>
             </li>
             <li class="main-nav_item">
                 <a asp-action="Index"
-                   asp-controller="About" class="main-nav_link">Про кінотеатр</a>
+                   asp-controller="About" class="main-nav_link">
+                    Про кінотеатр
+                </a>
             </li>
+            @if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <form method="post" asp-controller="Login" asp-action="Logout">
+                    <button type="submit">ЕЕЕЙ залупа</button>
+                </form>
+            }
+            else
+            {
+                <li class="current-page_yellow">
+                    <a asp-action="Index"
+                       asp-controller="Login" 
+                       class="current-page_yellow" 
+                       asp-route-returnUrl="/">
+                        Увійти
+                    </a>
+                </li>
+            }
         </ul>
     </nav>
-    <div class="login">
-        <li class="current-page_yellow">
-            <a asp-action="Index"
-               asp-controller="Login" class="current-page-black">Увійти</a>
-        </li>
-    </div>
 </header>
 
