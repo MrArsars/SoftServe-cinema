@@ -17,6 +17,7 @@ builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<CinemaDbContext>();
 builder.Services.AddScoped<IActorService, ActorService>();
 builder.Services.AddScoped<IMovieService, MovieService>();
+builder.Services.AddScoped<ISessionService, SessionService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
