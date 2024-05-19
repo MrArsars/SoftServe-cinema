@@ -1,17 +1,25 @@
-
-.site-title{
+.site-title
+{
   display: flex;
   flex-direction: column;
 }
 /* Загальні стилі */
-body{
+html,body
+{
+  height: 100%;
   font-family: Arial, sans-serif;
-  background-color: #ffffff;
   place-content: start space-evenly;
-  height: 100svh;
+}
+.wrapper
+{
+  background: linear-gradient(to bottom left, #fefefa, #bfc1b7);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 main
 {
+  flex: 1 1 auto;
   /* Стилі для main */
   padding-top: 20px; /* Відступ зверху для уникнення накладання на header */
   margin-top: 20px; /* Додатковий відступ зверху, якщо необхідно */
@@ -27,10 +35,6 @@ main
   border-bottom-color: transparent;
   border-bottom-style: solid;
   transition: border-bottom 1000ms ease, color 1000ms ease; /* Додано перехід для зміни кольору тексту */
-}
-
-header.scrolled .main-nav_link {
-  color: #ffffff; /* Змінити колір тексту на чорний для прокрученого заголовку */
 }
 .main-nav_link:hover
 {
@@ -51,7 +55,7 @@ header.scrolled .main-nav_link {
   color: rgb(255, 0, 0);
 }
 
-.current-page_yellow a {
+.current-page_black_y a {
   font-family: Arial, sans-serif;
   font-size: 15px;
   text-decoration: none;
@@ -63,6 +67,10 @@ header.scrolled .main-nav_link {
 }
 
 .current-page-black {
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+  color: white;
   display: inline-block; /* Зробити елемент блоковим для налаштування ширини та висоти */
   background-color: black; /* Колір фону - чорний */
   padding: 10px 20px; /* Відступи всередині кнопки (верхній/нижній, лівий/правий) */
@@ -94,28 +102,83 @@ header.scrolled .main-nav_link {
 .current-page_yellow {
   margin-right: auto; /* Відсування елементу "Увійти" вправо */
 }
+/* Стара версія !!!!!!!*/
+/*header {*/
+/*  !* Приклад стилів для header *!*/
+/*  width: 100%;*/
+/*  background: linear-gradient(to left, #fcfbf2, #d5d0c4);*/
+/*  !*background-color: white;*!*/
+/*  color: transparent;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  !*justify-content: space-between;*!*/
+/*  align-items: center;*/
+/*  padding: 10px 20px;*/
+/*  position: fixed;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  z-index: 1;*/
+/*  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);*/
+/*  transition: background 1.5s ease; !* Додайте плавний перехід для зміни фонового кольору *!*/
+/*}*/
+
+/*header.scrolled {*/
+/*  background: linear-gradient(to left, rgba(19, 19, 19, 0.8), rgba(19, 19, 19, 0.8));*/
+/*  !*background-color: rgba(19, 19, 19, 0.8); !* Напівпрозорий темно-сірий фон *!*!*/
+/*}*/
+
+/*-----------------------------------------*/
 
 header {
-  /* Приклад стилів для header */
-  width: 100%;
-  background-color: transparent;
-  color: rgba(255, 255, 255, 0);
-  display: flex;
-  justify-content: center;
-  /*justify-content: space-between;*/
-  align-items: center;
-  padding: 10px 20px;
+  color: transparent;
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   z-index: 1;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  transition: background-color 1.5s ease; /* Додайте плавний перехід для зміни фонового кольору */
+  background: none; /* Основний фон зникає */
+}
+
+.header-bg-initial {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, #fcfbf2, #d5d0c4);
+  transition: opacity 1.5s ease;
+  z-index: -2; /* Задній план */
+}
+
+.header-bg-scrolled {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(19, 19, 19, 0.8), rgba(19, 19, 19, 0.8));
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  z-index: -1; /* Передній план, який стає видимим при прокрутці */
+}
+
+header.scrolled .header-bg-initial {
+  opacity: 0; /* Зникає початковий фон */
+}
+
+header.scrolled .header-bg-scrolled {
+  opacity: 1; /* Показується фоновий градієнт при прокрутці */
 }
 /* ХЕДЕР */
 .logo {
   order: 1;
   margin-right: auto; /* Зсув логотипу вправо */
+  margin-left: 460px;
 }
 
 nav {
@@ -125,26 +188,15 @@ nav {
 .login {
   order: 3;
   margin-left: auto; /* Зсув блоку "Увійти" вліво */
+  margin-right: 520px;
 }
-
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-nav ul li {
-  display: inline;
-  margin-right: 20px; /* Відступ між пунктами меню */
-}
-
 a {
   text-decoration: none;
   color: #333;
 }
 /* ХЕДЕР */
-header.scrolled {
-  background-color: rgba(19, 19, 19, 0.8); /* Напівпрозорий темно-сірий фон */
+header.scrolled .main-nav_link {
+  color: #ffffff; /* Змінити колір тексту на чорний для прокрученого заголовку */
 }
 header img.logo {
   height: 50px;
@@ -172,7 +224,7 @@ header nav li {
 }
 
 header nav a {
-  color: #555;
+  color: #ffffff;
   text-decoration: none;
   font-size: 16px;
   font-weight: bold;
@@ -248,6 +300,7 @@ a {
   background-color: #0e0e0e;
   padding-bottom: 55px;
 }
+
 footer {
   display: block;
   unicode-bidi: isolate;
@@ -260,6 +313,7 @@ footer {
   background-color: #eee;
   padding: 20px;
 }
+
 
 .footer-left p {
   margin: 0;
@@ -449,62 +503,15 @@ section {
 .movie-hire:focus {
   outline: none;
 }
-
-.movie-hire__img-wrap {
-  position: relative;
-  height: 450px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-bottom: 17px;
-}
-
-.movie-hire__img-wrap:after {
-  content: '';
-  position: absolute;
-  bottom: -15px;
-  right: 30px;
-  left: 30px;
-  margin: 0 auto;
-  height: 160px;
-  -webkit-border-radius: 30px;
-  border-radius: 30px;
-  background-color: #000;
-  z-index: -1;
-  -webkit-filter: blur(10px);
-  filter: blur(10px);
-}
-
-.movie-hire__img-wrap:hover .movie-hire__icons {
-  max-width: 147px;
-}
-
-.movie-hire__img-wrap:hover .movie-hire__icon {
-  opacity: 1;
-  -webkit-transition: .5s;
-  -o-transition: .5s;
-  transition: .5s;
-}
 .movie-hire__icons {
   max-width: 100%;
   margin: 0 auto;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
   position: absolute;
@@ -512,7 +519,6 @@ section {
   right: 0;
   left: 0;
   top: 0;
-  -webkit-transition: max-width .3s;
   -o-transition: max-width .3s;
   transition: max-width .3s;
 }
@@ -598,6 +604,10 @@ section {
   align-items: baseline;
   margin-bottom: 14px;
 }
+.movie-hire__title a {
+  font-size: 20px;
+  margin: 0 auto;
+}
 .movie-hire__tags {
   display: -webkit-box;
   display: -webkit-flex;
@@ -620,9 +630,8 @@ section {
 }
 .movie-hire__img-wrap {
   position: relative;
-  height: 450px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+  height: 100%;
+  border-radius: 20px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -662,8 +671,7 @@ section {
 }
 
 .movie-hire__img {
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+  border-radius: 20px;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -677,7 +685,7 @@ a {
 }
 
 a:hover {
-  color: #5aa900;
+  color: #979797;
 }
 
 a:focus {
@@ -696,7 +704,7 @@ a:focus {
   width: 400px;
   padding: 20px;
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: #d8d4c8;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-top: 100px; /* Відступ зверху, щоб форма була посередині сторінки */
   margin-left: 850px;
@@ -747,8 +755,8 @@ a:focus {
 }
 
 .schedule-table__row_head .schedule-table__col {
-  border-bottom-color: #d9c010;
-  border-right-color: #d9c010;
+  border-bottom-color: #706259;
+  border-right-color: #706259;
 }
 
 .schedule-table__row_head .schedule-table__col:nth-child(2) {
@@ -806,8 +814,8 @@ a:focus {
 }
 
 .schedule-table__btn:hover {
-  -webkit-box-shadow: inset 0 0 0 1px #d9c010;
-  box-shadow: inset 0 0 0 1px #d9c010;
+  -webkit-box-shadow: inset 0 0 0 1px #706259;
+  box-shadow: inset 0 0 0 1px #706259;
   background-color: #5aa900;
   color: #fff;
 }
@@ -871,8 +879,8 @@ a:focus {
   vertical-align: top;
   height: 100%;
   background-color: transparent;
-  border: 1px solid #d9c010;
-  color: #d9c010;
+  border: 1px solid #706259;
+  color: #43433f;
   font-size: 14px;
   line-height: 1.2;
   -webkit-transition: .3s;
@@ -964,4 +972,16 @@ a:focus {
 .single-schedule-title b {
   font-weight: 700;
   color: #d9c010;
+}
+.bt-sub
+{
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  color: #000000;
+  text-decoration: none;
+  display: inline-block;
+  border-bottom-width: 2px;
+  border-bottom-color: transparent;
+  border-bottom-style: solid;
+  transition: border-bottom 1000ms ease, color 1000ms ease; /* Додано перехід для зміни кольору тексту */
 }

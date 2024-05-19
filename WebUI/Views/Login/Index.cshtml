@@ -7,9 +7,8 @@
 <main style="overflow: auto" class="main-body">
     <section id="Login">
         <div class="form-container">
-            <h2 class="mb-4">Login</h2>
+            <h2 class="mb-4" style="font-size: 30px">Login</h2>
             <form class="bootstrap-form" method="post" asp-controller="Login" asp-action="Index" asp-route-returnUrl="@Model.ReturnUrl">
-                >
                 <div class="mb-3">
                     <label class="form-label" asp-for="Email">Email</label>
                     <input class="form-control" required asp-for="Email">

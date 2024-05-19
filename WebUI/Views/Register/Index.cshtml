@@ -7,9 +7,14 @@
 <main style="overflow: auto" class="main-body">
 	<section id="Login">
 		<div class="form-container">
-			<h2 class="mb-4">Register</h2>
+			<h2 class="mb-4" style="font-size: 30px">Register</h2>
 			<form class="bootstrap-form" method="post" asp-controller="Register" asp-action="Index">
 				<div asp-validation-summary="ModelOnly"></div>
+				<div class="mb-3">
+					<label class="form-label" asp-for="Name">Name</label>
+					<input class="form-control" required asp-for="Name">
+					<span asp-validation-for="Name"></span>
+				</div>
 				<div class="mb-3">
 					<label class="form-label" asp-for="Email">Email</label>
 					<input class="form-control" required asp-for="Email">
