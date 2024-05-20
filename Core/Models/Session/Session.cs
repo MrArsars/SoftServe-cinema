@@ -12,7 +12,6 @@ public class Session : IEntity
     public int Price { get; set; }
     
     public Session() {}
-
     public Session(SessionDto sessionDto, Movie.Movie movie, Hall hall)
     {
         Id = sessionDto.Id;
