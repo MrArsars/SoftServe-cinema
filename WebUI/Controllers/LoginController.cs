@@ -57,6 +57,7 @@ public class LoginController : Controller
         await _signInManager.SignOutAsync();
         return RedirectToAction("Index", "Home");
     }
+    
 
     public IActionResult Index()
     {
@@ -68,4 +69,5 @@ public class LoginController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+    
 }

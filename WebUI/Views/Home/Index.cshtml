@@ -1,6 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model List<Core.Models.Movie.Movie>
-
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -22,7 +21,7 @@
 
 @{
     <script>
-        if (localStorage.getItem('animated') !== "true")
+        if (localStorage.getItem('animated') !== "false")
         {
             localStorage.setItem('animated', "true")
             window.onload = function() {
@@ -31,7 +30,7 @@
                 logo.style.display = "block";
                 logo.style.opacity = 0;
                 siteTitle.style.opacity = 0;
-                var animation = logo.animate([{opacity: 0}, {opacity: 1}], 1500);
+                var animation = logo.animate([{opacity: 0}, {opacity: 1}], 2000);
                 animation.onfinish = function() {
                     siteTitle.animate([{opacity: 0}, {opacity: 1}], 1000);
 

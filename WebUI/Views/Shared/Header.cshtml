@@ -1,6 +1,9 @@
 <header>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/head.js"> </script>
+    <script src="/js/head.js"> </script>
+    @* <div class="header-bg"></div> <!-- Доданий елемент для ефекту плавності в старому варіанті є затуп в роботі --> *@
+    <div class="header-bg-initial"></div> <!-- Початковий фон -->
+    <div class="header-bg-scrolled"></div> <!-- Фон при прокрутці -->
     <div class="logo">
         <a asp-action="Index" asp-controller="Home">
             <img src="~/images/logoheader_3.png" alt="Auto Scout logoheader">
@@ -32,24 +35,27 @@
                     Про кінотеатр
                 </a>
             </li>
-            @if (User.Identity?.IsAuthenticated ?? false)
-            {
-                <form method="post" asp-controller="Login" asp-action="Logout">
-                    <button type="submit">ЕЕЕЙ залупа</button>
-                </form>
-            }
-            else
-            {
-                <li class="current-page_yellow">
-                    <a asp-action="Index"
-                       asp-controller="Login" 
-                       class="current-page_yellow" 
-                       asp-route-returnUrl="/">
-                        Увійти
-                    </a>
-                </li>
-            }
         </ul>
     </nav>
+    <div class = "login">
+        @if (User.Identity?.IsAuthenticated ?? false)
+        {
+        <form method="post" asp-controller="Login" asp-action="Logout">
+            <button type="submit" class="current-page-black_y">
+                <a class="current-page-black">Вийти</a>
+            </button>
+        </form>
+        }
+        else
+        {
+        <li class="current-page-black_y">
+            <a asp-action="Index"
+               asp-controller="Login"
+               class="current-page-black"
+               asp-route-returnUrl="/">
+                Увійти
+            </a>
+        </li>
+        }
+    </div>
 </header>
-
