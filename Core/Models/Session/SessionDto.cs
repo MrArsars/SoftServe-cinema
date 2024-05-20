@@ -20,6 +20,6 @@ public class SessionDto : IEntity
         HallId = session.Hall.Id;
         DateTimeStart = session.DateTimeStart;
         Price = session.Price;
-        ReservedPlaces = session.ReservedPlaces.Select(i => i.Id).ToList();
+        ReservedPlaces = session.ReservedPlaces;
     }
 }

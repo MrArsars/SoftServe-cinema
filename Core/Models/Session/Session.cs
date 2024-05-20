@@ -10,7 +10,7 @@ public class Session : IEntity
     public Hall Hall { get; set; } = new();
     public DateTime DateTimeStart { get; set; }
     public int Price { get; set; }
-    public List<Place> ReservedPlaces {get; set; }
+    public List<Guid> ReservedPlaces {get; set; }
     
     public Session() {}
     public Session(SessionDto sessionDto, Movie.Movie movie, Hall hall, List<Guid> reservedPlaces)
@@ -20,5 +20,6 @@ public class Session : IEntity
         Hall = hall;
         DateTimeStart = sessionDto.DateTimeStart;
         Price = sessionDto.Price;
+        ReservedPlaces = reservedPlaces;
     }
 }

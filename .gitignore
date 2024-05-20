@@ -48,3 +48,4 @@ obj/
 bin/
 
 WebUI/appsettings.json
+.idea/config/applicationhost.config

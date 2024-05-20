@@ -101,7 +101,7 @@ public class SessionService : ISessionService
     {
         var movieDto = _movieRepository.GetById(sessionDto.MovieId);
         var hall = _hallRepository.GetById(sessionDto.HallId);
-        var reservedPlaces = _ticketRepository.GetAll().Where(x => x.SessionId.Equals(sessionDto.Id)).Select(x => x.Id).ToList();
+        var reservedPlaces = _ticketRepository.GetAll().Where(x => x.SessionId.Equals(sessionDto.Id)).Select(x => x.PlaceId).ToList();
         
         return new Session(sessionDto, new Movie(movieDto), hall, reservedPlaces);
     }
