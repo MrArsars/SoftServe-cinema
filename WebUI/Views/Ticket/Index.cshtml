@@ -1,4 +1,6 @@
-﻿@model dynamic
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model dynamic
 
 <main style="height: 1160px;margin-top: 70px;">
 <div class="widget">
@@ -44,8 +46,8 @@
                             </svg>
                         </div>
                         <div class="wrap-text">
-                            <span class="text-dscr add-comma mr-4 small-float-left">16.05.2024</span>
-                            <span class="text">Четвер</span>
+                            <span class="text-dscr add-comma mr-4 small-float-left">@Model.Session.DateTimeStart.ToString("dd.MM.yyyy")</span>
+                            <span class="text">@Model.Session.DateTimeStart.ToString("dddd", new CultureInfo("uk-UA"))</span>
                         </div>
                     </div>
                     <div class="showtime-info__time">
@@ -59,7 +61,7 @@
                         </div>
                         <div class="wrap-text">
                             <span class="text-dscr">Час</span>
-                            <span class="text">15:40 - 17:21</span>
+                            <span class="text">@Model.Session.DateTimeStart.ToString("HH:mm") - @Model.Session.DateTimeStart.AddMinutes(Model.Session.Movie.Duration).ToString("HH:mm")</span>
                         </div>
                     </div>
                 </div>
@@ -125,85 +127,43 @@
             </div>
             <div class="seats" style="width: 23.1rem; height: 28.666702rem; margin:0 auto;">
                 <div style="position:absolute;width:22.75rem;height:14rem;right:0rem;top:7rem;">
-                    
-                    <div class="GOOD" data-price="150" data-tippy="2 Ряд, 1 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:21.125rem;top:2rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="2 Ряд, 2 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:19.5rem;top:2rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="2 Ряд, 3 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:17.875rem;top:2rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="2 Ряд, 4 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:16.25rem;top:2rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="2 Ряд, 5 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:14.625rem;top:2rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="2 Ряд, 6 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:13rem;top:2rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="2 Ряд, 7 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:11.375rem;top:2rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="2 Ряд, 8 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:9.75rem;top:2rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="2 Ряд, 9 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:8.125rem;top:2rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="2 Ряд, 10 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:6.5rem;top:2rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="2 Ряд, 11 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:4.875rem;top:2rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="2 Ряд, 12 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:3.25rem;top:2rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="2 Ряд, 13 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:1.625rem;top:2rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="2 Ряд, 14 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:0rem;top:2rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="1 Ряд, 1 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:19.5rem;top:0rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="1 Ряд, 2 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:17.875rem;top:0rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="1 Ряд, 3 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:16.25rem;top:0rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="1 Ряд, 4 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:14.625rem;top:0rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="1 Ряд, 5 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:13rem;top:0rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="1 Ряд, 6 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:11.375rem;top:0rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="1 Ряд, 7 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:9.75rem;top:0rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="1 Ряд, 8 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:8.125rem;top:0rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="1 Ряд, 9 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:6.5rem;top:0rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="1 Ряд, 10 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:4.875rem;top:0rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="1 Ряд, 11 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:3.25rem;top:0rem;">
-                    </div>
-                    <div class="GOOD" data-price="150" data-tippy="1 Ряд, 12 Місце
-Ціна: 150 грн" data-tippy-pos="up" data-tippy-animate="bubble" style="position: absolute; height: 1.75rem;width: 1.25rem;left:1.625rem;top:0rem;">
-                    </div>
+                    @foreach (var place in Model.Places)
+                    {
+                        var isSelected = Model.SelectedPlaces.Contains(place.Id);
+                        var isDisabled = Model.Session.ReservedPlaces.Contains(place.Id);
+                        @if (isDisabled)
+                        {
+                            <button class="GOOD seat-close"
+                                    data-tippy="Це місце зайнято"
+                                    data-tippy-animate="bubble"
+                                    style="
+                                 position: absolute; 
+                                 height: 1.75rem;
+                                 width: 1.25rem;
+                                 left:@(1.625 * (1 - place.RowNumber + place.SeatNumber))rem;
+                                 top:@((place.RowNumber - 1) * 2)rem;
+                                 background-color: rgba(0, 0, 0, 0.5);
+                                 color: lightgray">х
+                            </button>
+                        }
+                        else
+                        {
+                            <form asp-action="TogglePlace" asp-route-placeId=@place.Id method="post">
+                                <button type="submit" class="GOOD"
+                                        data-price=@Model.Session.Price data-tippy="@place.RowNumber Ряд, @place.SeatNumber Місце
+Ціна: @Model.Session.Price грн" data-tippy-pos="up"
+                                        data-tippy-animate="bubble"
+                                        style="
+                                 position: absolute; 
+                                 height: 1.75rem;
+                                 width: 1.25rem;
+                                 left:@(1.625 * (1 - place.RowNumber + place.SeatNumber))rem;
+                                 top:@((place.RowNumber - 1) * 2)rem;
+                                 background-color: @(isSelected ? "rgba(0, 0, 0, 0.33)" : "")">
+                                </button>
+                            </form>
+                        }
+                    }
                 </div>
             </div>
         </div>
@@ -214,7 +174,7 @@
         <div class="container-aside" data-ticket-count="0" data-concession-count="0">
             <div class="aside-info">
                 <div>
-                    <div class="title">Квитки<span class="summary" id="aside-title-summary">0 квиток, 0 грн</span></div>
+                    <div class="title">Квитки<span class="summary" id="aside-title-summary">Кількість: @Model.SelectedPlaces.Count, @Model.Session.Price грн</span></div>
                     <div class="empty-state">
                     </div>
                     <ul class="booking-hint">
@@ -246,7 +206,12 @@
             <div>
                 <div class="booking-submit">
                     <div class="title">
-                        <strong>Всього до сплати:<span class="summary" id="booking-submit-summary">0<small> грн</small></span></strong>
+                        <strong>
+                            Всього до сплати:
+                            <span class="summary" id="booking-submit-summary">
+                                @(Model.SelectedPlaces.Count * Model.Session.Price)<small> грн</small>
+                            </span>
+                        </strong>
                     </div>
                     <button class="btn-next" js-btn-next="">Продовжити</button>
                 </div>
@@ -271,6 +236,7 @@
 </div>
 </div>
 </main>
+
 
 @functions {
 

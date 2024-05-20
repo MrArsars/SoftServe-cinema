@@ -11,20 +11,35 @@ public class TicketController : Controller
 {
     private readonly ISessionService _sessionService;
     private readonly IPlaceService _placeService;
+    static dynamic TicketModel = new ExpandoObject();
+
     public TicketController(ISessionService sessionService, IPlaceService placeService)
     {
         _sessionService = sessionService;
         _placeService = placeService;
     }
 
-    public IActionResult Index(Guid sessionId)
+    public IActionResult Index(Guid? sessionId = null)
     {
-        var session = _sessionService.GetById(sessionId);
+        if (sessionId is null) return View(TicketModel);
+        var session = _sessionService.GetById((Guid)sessionId);
         var places = _placeService.GetAll().Where(x => x.HallId.Equals(session.Hall.Id)).ToList();
-        dynamic TicketModel = new ExpandoObject();
         TicketModel.Session = session;
         TicketModel.Places = places;
+        TicketModel.SelectedPlaces = new List<Guid>();
         return View(TicketModel);
+    }
+
+    [HttpPost]
+    public IActionResult TogglePlace(Guid placeId)
+    {
+        List<Guid> list = TicketModel.SelectedPlaces;
+        if (list.Exists(x => x.Equals(placeId)))
+            TicketModel.SelectedPlaces.Remove(placeId);
+        else
+            TicketModel.SelectedPlaces.Add(placeId);
+
+        return RedirectToAction("Index");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
