@@ -1,4 +1,5 @@
 ﻿@model Core.Models.Session.Session
+
 <main style="height: 1160px;margin-top: 70px;">
     <div class="widget">
         <div>
@@ -6,7 +7,7 @@
                 <div class="movie-info">
                     <div class="wrap-image">
                         <img src="@Model.Movie.ImageUrl" alt="movie poster" class="movie-poster ">
-                        <div class="age">0+</div>
+                        <div class="age @GetAgeClass(Model.Movie.AgeRestriction)">@Model.Movie.AgeRestriction+</div>
                     </div>
                     <div class="media-body">
                         <div class="movie-name mobile-hidden"><a asp-controller="Film" asp-action="Index"  tabindex="-1"> @Model.Movie.Name </a></div>
@@ -263,4 +264,21 @@
         </div>
     </div>
     </main>
-    
+
+    @functions {
+        private string GetAgeClass(int age)
+        {
+            if (age >= 18)
+            {
+                return "age-18-plus";
+            }
+            else if (age >= 14)
+            {
+                return "age-14-16";
+            }
+            else
+            {
+                return "age-0-14";
+            }
+        }
+    }

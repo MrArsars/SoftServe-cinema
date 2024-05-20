@@ -13,7 +13,6 @@ public class Session : IEntity
     public List<Place> ReservedPlaces {get; set; }
     
     public Session() {}
-
     public Session(SessionDto sessionDto, Movie.Movie movie, Hall hall, List<Guid> reservedPlaces)
     {
         Id = sessionDto.Id;

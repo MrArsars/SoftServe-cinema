@@ -706,8 +706,8 @@ a:focus {
   border-radius: 8px;
   background-color: #d8d4c8;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 100px; /* Відступ зверху, щоб форма була посередині сторінки */
-  margin-left: 850px;
+  margin: auto;
+  margin-top: inherit;
 }
 .menu-block {
   display: flex; /* Встановлюємо контейнер блоку як flex */
@@ -984,4 +984,16 @@ a:focus {
   border-bottom-color: transparent;
   border-bottom-style: solid;
   transition: border-bottom 1000ms ease, color 1000ms ease; /* Додано перехід для зміни кольору тексту */
+}
+
+.age-18-plus {
+  color: #ff0000;
+}
+
+.age-14-16 {
+  color: #ffff00;
+}
+
+.age-0-14 {
+  color: #00ff00;
 }
