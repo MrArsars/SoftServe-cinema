@@ -15,6 +15,9 @@ public class Ticket : IEntity
 
     public Ticket(TicketDto ticketDto, Session.Session session, Place place)
     {
-        
+        Id = ticketDto.Id;
+        UserId = ticketDto.UserId;
+        Session = session;
+        Place = place;
     }
 }

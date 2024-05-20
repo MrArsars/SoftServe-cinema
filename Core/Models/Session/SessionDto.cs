@@ -9,6 +9,7 @@ public class SessionDto : IEntity
     public Guid HallId { get; set; } = new();
     public DateTime DateTimeStart { get; set; }
     public int Price { get; set; }
+    public List<Guid> ReservedPlaces { get; set; }
     
     public SessionDto(){}
 
@@ -19,5 +20,6 @@ public class SessionDto : IEntity
         HallId = session.Hall.Id;
         DateTimeStart = session.DateTimeStart;
         Price = session.Price;
+        ReservedPlaces = session.ReservedPlaces.Select(i => i.Id).ToList();
     }
 }

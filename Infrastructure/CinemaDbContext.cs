@@ -38,7 +38,7 @@ namespace Infrastructure
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                "Server=ARSARS;Database=CinemaDB;Integrated Security=True;Encrypt=False;TrustServerCertificate=False;Connect Timeout=10;");
+                "Server=DESKTOP-N96A4PM;Database=CinemaDB;Integrated Security=True;Encrypt=False;TrustServerCertificate=False;Connect Timeout=10;");
         }
     }
 }
