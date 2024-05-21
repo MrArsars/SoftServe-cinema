@@ -1,48 +1,109 @@
-﻿@model Core.Models.Movie.Movie
-
+﻿@model dynamic
+@using System.Globalization
+@using  WebUI.Models
 @{
-    ViewData["Title"] = Model.Name;
+    ViewData["Title"] = Model.Movie.Name;
 }
-
 <main class="my-32 flex flex-column items-center">
+    <div class="container">
+        <div class="title-box">
+            <div class="title-box__title" style="font-size: 40px;">@Model.Movie.Name</div>
+            <nav class="schedule">
+                <ul class="schedule__list schedule__list_movie" id="schedule-list">
+                    <li class="schedule__item">
+                        <button type="button" class="schedule__btn schedule__btn_current" data-filter="*">Весь розклад</button>
+                    </li>
+                    @for (int i = 0; i < 3; i++)
+                    {
+                    var nextDate = DateTime.Now.AddDays(i + 1);
+                    var dateStr = nextDate.ToString("ddd, dd.MM.", new CultureInfo("uk-UA"));
+                    var formattedDateStr = dateStr.ToUpperFirstLetter();
+                    <li class="schedule__item">
+                        <button type="button" class="schedule__btn" data-filter=".date_@(nextDate.ToString("ddMM"))">
+                            @formattedDateStr
+                        </button>
+                    </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
     <div class="max-w-screen-2xl flex items-start w-full flex-column">
-        <h2 class="text-4xl font-bold my-12">@Model.Name</h2>
+        @* <h2 class="text-4xl font-bold my-12">@Model.Movie.Name</h2> *@
         <div class="w-full flex flex-row mb-20">
-            <img src="@Model.ImageUrl"  alt="" class="w-96 mr-8"/>
+            <img src="@Model.Movie.ImageUrl" alt="" class="w-96 mr-8"/>
             <div class="flex flex-column">
-                <div class="flex flex-row text-xl font-bold mb-3">@Model.Name <div class="ml-4 border-2 border-black rounded-lg">@Model.AgeRestriction+</div></div>
+                <div class="flex flex-row text-xl font-bold mb-3">@Model.Movie.Name
+                    <div class="ml-4 border-2 border-black rounded-lg">@Model.Movie.AgeRestriction+</div></div>
                 <div class="flex flex-row">
-                    <div class="border border-amber-400 rounded-lg px-1">@(Model.Duration / 60) години @(Model.Duration % 60) хвилин</div>
-                    @foreach (var g in Model.Genres)
+                    <div class="border border-amber-400 rounded-lg px-1">@(Model.Movie.Duration / 60) години @(Model.Movie.Duration % 60) хвилин</div>
+                    @foreach (var g in Model.Movie.Genres)
                     {
                         <div class="border border-amber-400 rounded-lg px-1 ml-2">@g.Name</div>
                     }
                 </div>
-                <p class="mt-3 text-lg">@Model.Description</p>
+                <div class="flex flex-row">
+                    <div class="border border-amber-400 rounded-lg px-1">
+                        <br/>
+                        <a>Рейтинг глядачів: @Model.Movie.Rating</a>
+                    </div>
+                </div>
+                <p class="mt-3 text-lg">@Model.Movie.Description</p>
+                <div class="single-schedule" style="position: relative;">
+                    <div class="single-schedule-title schedule_selector
+                    3d_n 3d_ date_22" style="left: 0px; top: 25px;"><b> </b>
+                        @Html.Partial("DatePartial")
+                    </div>
+                    <div class="single-schedule__row schedule_selector
+                    3d_n 3d_                     date_22" style="left: 0px; top: 73.0312px;">
+                        <a asp-controller="Ticket" asp-action="Index" asp-route-sessionId="@Model.Sessions[0].Id" class="schedule-hall vkino­link" id="90462" target="_top">
+                            <div class="single-schedule__col schedule_selector 3d_n date_22" style="left: 0px; top: 100.031px;">
+                                <time class="single-schedule__time" style="margin: auto">@Model.Sessions[0].DateTimeStart.ToString("HH:mm")</time>
+                                <div class="single-schedule__format">
+                                    <div class="wrap-badge">
+                                        <div class="badge" style="color: #0e0e0e; font-size: 20px">2D</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="w-full flex flex-row mb-20">
-            <iframe width="760" height="430" src="@Model.TrailerUrl" 
-                    title="YouTube video player" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin" 
+            <iframe width="760" height="430" src="@Model.Movie.TrailerUrl"
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
                     allowfullscreen></iframe>
             <div class="flex flex-column ml-12">
                 <div class="flex flex-row mb-2">
                     <p class="font-bold text-m">Актори: </p>
-                    <p class="ml-2">@(string.Join(", ", Model.Actors.Select(a => $"{a.Name} {a.Surname}")))</p>
+                    <p class="ml-2">
+                        @{
+                        var actors = Model.Movie.Actors as IEnumerable<dynamic>;
+                        string actorList = string.Join(", ", actors.Select(a => $"{a.Name} {a.Surname}"));
+                        @actorList
+                        }
+                    </p>
                 </div>
                 <div class="flex flex-row mb-2">
                     <p class="font-bold text-m">Жанр: </p>
-                    <p class="ml-2">@(string.Join(", ", Model.Genres.Select(g => $"{g.Name}")))</p>
+                    <p class="ml-2">
+                        @{
+                        var genres = Model.Movie.Genres as IEnumerable<dynamic>;
+                        string genreList = string.Join(", ", genres.Select(g => g.Name));
+                        @genreList
+                        }
+                    </p>
                 </div>
                 <div class="flex flex-row mb-2">
                     <p class="font-bold text-m">Тривалість: </p>
-                    <p class="ml-2">@Model.Duration хв.</p>
+                    <p class="ml-2">@Model.Movie.Duration хв.</p>
                 </div>
                 <div class="flex flex-row mb-2">
                     <p class="font-bold text-m">Вікові обмеження: </p>
-                    <p class="ml-2">@Model.AgeRestriction+</p>
+                    <p class="ml-2">@Model.Movie.AgeRestriction+</p>
                 </div>
             </div>
         </div>

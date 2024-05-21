@@ -12,27 +12,9 @@
             <div class="title-box">
                 <div class="title-box__title">Розклад сеансів</div>
                 <nav class="schedule">
-                    <ul class="schedule__list schedule__list_movie">
+                    <ul class="schedule__list schedule__list_movie" id="schedule-list">
                         <li class="schedule__item">
                             <button type="button" class="schedule__btn schedule__btn_current" data-filter="*">Всі</button>
-                        </li>
-                        <li class="schedule__item">
-                            <button type="button" class="schedule__btn" data-filter=".date_16">Чт,  16.05</button>
-                        </li>
-                        <li class="schedule__item">
-                            <button type="button" class="schedule__btn" data-filter=".date_17">Пт,  17.05</button>
-                        </li>
-                        <li class="schedule__item">
-                            <button type="button" class="schedule__btn" data-filter=".date_18">Сб,  18.05</button>
-                        </li>
-                        <li class="schedule__item">
-                            <button type="button" class="schedule__btn" data-filter=".date_19">Нд,  19.05</button>
-                        </li>
-                        <li class="schedule__item">
-                            <button type="button" class="schedule__btn" data-filter=".date_20">Пн,  20.05</button>
-                        </li>
-                        <li class="schedule__item">
-                            <button type="button" class="schedule__btn" data-filter=".date_21">Вт,  21.05</button>
                         </li>
                     </ul>
                     <a asp-action="Index" asp-controller="Schedule" class="schedule__btn schedule__btn_all">Весь розклад</a>
@@ -49,10 +31,10 @@
                 </tr>
                 @foreach (var s in Model)
                 {
-                   <partial model="@s" name="SessionRow"/>
+                    <partial model="@s" name="SessionRow"/>
                 }
             </table>
         </div>
     </section>
-   
+    <script src="~/js/schedule-list.js"></script>
 </main>
