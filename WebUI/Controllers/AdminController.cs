@@ -4,30 +4,36 @@ using Core.Interfaces;
 using Core.Models;
 using Core.Models.Movie;
 using Core.Models.Session;
+using Core.Models.User;
 using Core.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebUI.Models;
 
 namespace WebUI.Controllers
 {
+    [Authorize(Roles = nameof(RoleType.Admin))]
     public class AdminController : Controller
     {
         private readonly ISessionService _sessionService;
         private readonly IMovieService _movieService;
         private readonly IActorService _actorService;
+        private readonly UserManager<User> _userManager;
         private readonly IHallService _hallService;
         private readonly IGenreService _genreService;
         private dynamic _eo = new ExpandoObject();
 
         public AdminController(IMovieService movieService, ISessionService sessionService, IActorService actorService,
-            IGenreService genreService, IHallService hallService)
+            IGenreService genreService, IHallService hallService, UserManager<User> userManager)
         {
             _sessionService = sessionService;
             _actorService = actorService;
             _movieService = movieService;
             _genreService = genreService;
             _hallService = hallService;
+            _userManager = userManager;
         }
 
         public IActionResult InsertMovie(Movie movie)
@@ -116,7 +122,7 @@ namespace WebUI.Controllers
             _sessionService.Update(sessionDto);
             return RedirectToAction("Sessions");
         }
-
+        
         public IActionResult Index()
         {
             return View();
@@ -145,7 +151,6 @@ namespace WebUI.Controllers
             var res = _sessionService.DeleteById(id);
             return RedirectToAction("Sessions");
         }
-
         public IActionResult DeleteMovies(Guid id)
         {
             var result = _movieService.Delete(id);
@@ -159,12 +164,6 @@ namespace WebUI.Controllers
 
             return RedirectToAction("Movies");
         }
-
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        
     }
 }
