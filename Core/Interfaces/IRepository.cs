@@ -8,6 +8,7 @@
         void Insert(TEntity entity);
         void Update(TEntity entity);
         void Delete(int id);
+        void Delete(Guid id);
         void Delete(TEntity entity);
         void Save();
     }
