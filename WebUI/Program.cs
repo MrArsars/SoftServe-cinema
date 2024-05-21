@@ -1,4 +1,5 @@
 using Core.Interfaces;
+using Core.Models;
 using Core.Models.User;
 using Core.Services;
 using Infrastructure;
@@ -21,6 +22,8 @@ builder.Services.AddScoped<ISessionService, SessionService>();
 builder.Services.AddScoped<IPlaceService, PlaceService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<ITicketService, TicketService>();
+builder.Services.AddScoped<IGenreService, GenreService>();
+builder.Services.AddScoped<IHallService, HallService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

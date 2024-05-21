@@ -8,7 +8,7 @@ namespace Infrastructure.Repositories
     {
         internal CinemaDbContext context;
         internal DbSet<TEntity> dbSet;
-
+        
         public Repository(CinemaDbContext context)
         {
             this.context = context;
@@ -40,6 +40,13 @@ namespace Infrastructure.Repositories
             TEntity? entity = dbSet.Find(id);
             if (entity != null) Delete(entity);
         }
+        
+        public void Delete(Guid id)
+        {
+            TEntity? entity = dbSet.Find(id);
+            if (entity != null) Delete(entity);
+        }
+
 
         public void Delete(TEntity entity)
         {

@@ -1,6 +1,6 @@
 ﻿@model dynamic
 @using System.Globalization
-@using  WebUI.Models
+
 @{
     ViewData["Title"] = Model.Movie.Name;
 }
@@ -45,7 +45,7 @@
                 <div class="flex flex-row">
                     <div class="border border-amber-400 rounded-lg px-1">
                         <br/>
-                        <a>Рейтинг глядачів: @Model.Movie.Rating</a>
+                        <a>Рейтинг глядачів: @Model.Movie.Rating / 10</a>
                     </div>
                 </div>
                 <p class="mt-3 text-lg">@Model.Movie.Description</p>
@@ -54,18 +54,20 @@
                     3d_n 3d_ date_22" style="left: 0px; top: 25px;"><b> </b>
                         @Html.Partial("DatePartial")
                     </div>
-                    <div class="single-schedule__row schedule_selector
-                    3d_n 3d_                     date_22" style="left: 0px; top: 73.0312px;">
-                        <a asp-controller="Ticket" asp-action="Index" asp-route-sessionId="@Model.Sessions[0].Id" class="schedule-hall vkino­link" id="90462" target="_top">
-                            <div class="single-schedule__col schedule_selector 3d_n date_22" style="left: 0px; top: 100.031px;">
-                                <time class="single-schedule__time" style="margin: auto">@Model.Sessions[0].DateTimeStart.ToString("HH:mm")</time>
-                                <div class="single-schedule__format">
-                                    <div class="wrap-badge">
-                                        <div class="badge" style="color: #0e0e0e; font-size: 20px">2D</div>
+                    <div class="single-schedule__row schedule_selector 3d_n 3d_ date_22" style="left: 0px; top: 73.0312px; display: flex; flex-direction: row;">
+                        @foreach (var session in Model.Sessions)
+                        {
+                            <a asp-controller="Ticket" asp-action="Index" asp-route-sessionId="@session.Id" class="schedule-hall vkino­link" id="90462" target="_top">
+                                <div class="single-schedule__col schedule_selector 3d_n date_22" style="left: 0px; top: 100.031px;">
+                                    <time class="single-schedule__time" style="margin: auto">@session.DateTimeStart.ToString("HH:mm")</time>
+                                    <div class="single-schedule__format">
+                                        <div class="wrap-badge">
+                                            <div class="badge" style="color: #0e0e0e; font-size: 20px">2D</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        }
                     </div>
                 </div>
             </div>

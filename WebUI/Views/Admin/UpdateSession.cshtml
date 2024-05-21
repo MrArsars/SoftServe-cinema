@@ -1,0 +1,39 @@
+@model Core.Models.Session.SessionDto
+
+<main class="my-32 flex flex-column items-center">
+    <div class="container">
+        <div class="title-box">
+            <div class="title-box__title" style="font-size: 40px;">Оновити сеанс</div>
+        </div>
+    </div>
+    <div class="max-w-screen-2xl flex items-start w-full flex-column">
+        <form class="w-full flex flex-row mb-20" asp-action="UpdateS">
+            <div class="flex flex-column m-auto w-5/12">
+                <div class="w-full flex flex-column">
+                    <label asp-for="MovieId">Фільм</label>
+                    <select class="mt-3 py-3 px-4 border-gray-200 rounded-lg text-sm w-full" asp-items="ViewBag.Movies" asp-for="MovieId"></select>
+                </div>
+                <div class="my-3 w-full flex flex-column">
+                    <label asp-for="HallId">Зал</label>
+                    <select class="mt-3 py-3 px-4 border-gray-200 rounded-lg text-sm w-full" asp-items="ViewBag.Halls" asp-for="HallId"></select>
+                </div>
+                <div class="my-3 w-full flex flex-row">
+                    <div class="flex flex-column mx-auto w-4/12">
+                        <label asp-for="DateTimeStart">Початок</label>
+                        <input class="mt-3 py-3 px-4 border-gray-200 rounded-lg text-sm" type="datetime-local" min="0" asp-for="DateTimeStart"></input>
+                    </div>
+                    <div class="flex flex-column mx-auto w-4/12">
+                        <label asp-for="Price">Ціна</label>
+                        <input class="mt-3 py-3 px-4 border-gray-200 rounded-lg text-sm" type="number" asp-for="Price"></input>
+                    </div>
+                </div>
+                <input asp-for="Id" class="hidden"/>
+                @for (int i = 0; i < Model.ReservedPlaces.Count; i++)
+                {
+                <input class="hidden" asp-for="ReservedPlaces[i]" />
+                }
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Додати</button>
+            </div>
+        </form>
+    </div>
+</main>
