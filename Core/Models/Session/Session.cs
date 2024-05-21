@@ -11,7 +11,6 @@ public class Session : IEntity
     public DateTime DateTimeStart { get; set; }
     public int Price { get; set; }
     public List<Guid> ReservedPlaces {get; set; }
-    
     public Session() {}
     public Session(SessionDto sessionDto, Movie.Movie movie, Hall hall, List<Guid> reservedPlaces)
     {

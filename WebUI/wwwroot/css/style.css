@@ -431,7 +431,7 @@ element.style {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(50px, 24%));
-  gap: 15px;
+  gap: 20px;
 }
 .section {
   position: relative;
@@ -487,15 +487,6 @@ section {
 /*-------------------------------------------------------------------
     Movies
 -------------------------------------------------------------------*/
-/*Hire*/
-.movies-hire {
-  margin: 0 -10px;
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(50px, 24%));
-  gap: 15px;
-}
-
 .movie-hire {
   margin: 0 10px 73px 10px;
 }
@@ -920,8 +911,8 @@ a:focus {
 .single-schedule {
   border-top: 1px solid rgba(151, 151, 151, 0.3);
   padding-top: 25px;
-  margin: 0 0 61px -webkit-calc(23.6522% + 17px);
-  margin: 0 0 61px calc(23.6522% + 17px);
+  /*margin: 0 0 61px -webkit-calc(23.6522% + 17px);*/
+  /*margin: 0 0 61px calc(23.6522% + 17px);*/
   overflow: hidden;
 }
 
@@ -952,8 +943,8 @@ a:focus {
   display: block;
   margin-bottom: 5px;
   font-size: 18px;
-  font-weight: 500;
-  line-height: 1;
+  /*line-height: 1;*/
+  width: fit-content;
 }
 
 .single-schedule__format {
@@ -965,7 +956,7 @@ a:focus {
 
 .single-schedule-title {
   font-weight: 300;
-  color: #fff2d3;
+  color: #000000;
   margin: 0 0 25px;
 }
 
@@ -985,7 +976,6 @@ a:focus {
   border-bottom-style: solid;
   transition: border-bottom 1000ms ease, color 1000ms ease; /* Додано перехід для зміни кольору тексту */
 }
-
 .age-18-plus {
   color: #ff0000;
 }
