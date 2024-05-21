@@ -143,7 +143,8 @@
                                  left:@(1.625 * (1 - place.RowNumber + place.SeatNumber))rem;
                                  top:@((place.RowNumber - 1) * 2)rem;
                                  background-color: rgba(0, 0, 0, 0.5);
-                                 color: lightgray">х
+                                 color: lightgray">
+                                х
                             </button>
                         }
                         else
@@ -213,7 +214,20 @@
                             </span>
                         </strong>
                     </div>
-                    <button class="btn-next" js-btn-next="">Продовжити</button>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a asp-action="Index"
+                           asp-controller="Login"
+                           asp-route-returnUrl="/Ticket">
+                            <button class="btn-next" js-btn-next="">Продовжити</button>
+                        </a>
+                    }
+                    else
+                    {
+                        <form asp-action="SendTickets" method="post">
+                            <button class="btn-next" js-btn-next="">Продовжити</button>
+                        </form>
+                    }
                 </div>
             </div>
         </div>
