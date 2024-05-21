@@ -21,6 +21,7 @@ builder.Services.AddScoped<ISessionService, SessionService>();
 builder.Services.AddScoped<IPlaceService, PlaceService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<ITicketService, TicketService>();
+builder.Services.AddScoped<IGenreService, GenreService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
