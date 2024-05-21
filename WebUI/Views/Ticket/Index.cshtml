@@ -129,42 +129,47 @@
                 <div style="position:absolute;width:22.75rem;height:14rem;right:0rem;top:7rem;">
                     @foreach (var place in Model.Places)
                     {
-                        var isSelected = Model.SelectedPlaces.Contains(place.Id);
-                        var isDisabled = Model.Session.ReservedPlaces.Contains(place.Id);
-                        @if (isDisabled)
-                        {
-                            <button class="GOOD seat-close"
-                                    data-tippy="Це місце зайнято"
-                                    data-tippy-animate="bubble"
-                                    style="
-                                 position: absolute; 
-                                 height: 1.75rem;
-                                 width: 1.25rem;
-                                 left:@(1.625 * (1 - place.RowNumber + place.SeatNumber))rem;
-                                 top:@((place.RowNumber - 1) * 2)rem;
-                                 background-color: rgba(0, 0, 0, 0.5);
-                                 color: lightgray">
-                                х
-                            </button>
-                        }
-                        else
-                        {
-                            <form asp-action="TogglePlace" asp-route-placeId=@place.Id method="post">
-                                <button type="submit" class="GOOD"
-                                        data-price=@Model.Session.Price data-tippy="@place.RowNumber Ряд, @place.SeatNumber Місце
-Ціна: @Model.Session.Price грн" data-tippy-pos="up"
-                                        data-tippy-animate="bubble"
-                                        style="
-                                 position: absolute; 
-                                 height: 1.75rem;
-                                 width: 1.25rem;
-                                 left:@(1.625 * (1 - place.RowNumber + place.SeatNumber))rem;
-                                 top:@((place.RowNumber - 1) * 2)rem;
-                                 background-color: @(isSelected ? "rgba(0, 0, 0, 0.33)" : "")">
-                                </button>
-                            </form>
-                        }
+                    var isSelected = Model.SelectedPlaces.Contains(place.Id);
+                    var isDisabled = Model.Session.ReservedPlaces.Contains(place.Id);
+                    @if (isDisabled)
+                    {
+                        var leftValue = (1.625f * (1 - place.RowNumber + place.SeatNumber)).ToString(System.Globalization.CultureInfo.InvariantCulture);
+                        var topValue = ((place.RowNumber - 1) * 2).ToString(System.Globalization.CultureInfo.InvariantCulture);
+                        <button class="GOOD seat-close"
+                                data-tippy="Це місце зайнято"
+                                data-tippy-animate="bubble"
+                                style="
+                                position: absolute;
+                                height: 1.75rem;
+                                width: 1.25rem;
+                                left:@(leftValue)rem;
+                                top:@(topValue)rem;
+                                background-color: rgba(0, 0, 0, 0.5);
+                                color: lightgray">
+                            x
+                        </button>
                     }
+                    else
+                    {
+                        var leftValue = (1.625f * (1 - place.RowNumber + place.SeatNumber)).ToString(System.Globalization.CultureInfo.InvariantCulture);
+                        var topValue = ((place.RowNumber - 1) * 2).ToString(System.Globalization.CultureInfo.InvariantCulture);
+                    <form asp-action="TogglePlace" asp-route-placeId=@place.Id method="post">
+                        <button type="submit" class="GOOD"
+                                data-price=@Model.Session.Price data-tippy="@place.RowNumber Ряд, @place.SeatNumber Місце
+Ціна: @Model.Session.Price грн" data-tippy-pos="up"
+                                data-tippy-animate="bubble"
+                                style="
+                                    position: absolute;
+                                    height: 1.75rem;
+                                    width: 1.25rem;
+                                    left:@(leftValue)rem;
+                                    top:@(topValue)rem;
+                                    background-color: @(isSelected ? "rgba(0, 0, 0, 0.33)" : "")">
+                        </button>
+                    </form>
+                    }
+                    }
+
                 </div>
             </div>
         </div>
