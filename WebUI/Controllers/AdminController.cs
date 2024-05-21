@@ -3,8 +3,10 @@ using System.Dynamic;
 using Core.Interfaces;
 using Core.Models;
 using Core.Models.Movie;
+using Core.Models.Session;
 using Core.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using WebUI.Models;
 
 namespace WebUI.Controllers
@@ -14,67 +16,105 @@ namespace WebUI.Controllers
         private readonly ISessionService _sessionService;
         private readonly IMovieService _movieService;
         private readonly IActorService _actorService;
+        private readonly IHallService _hallService;
         private readonly IGenreService _genreService;
         private dynamic _eo = new ExpandoObject();
 
-        public AdminController(IMovieService movieService, ISessionService sessionService, IActorService actorService, IGenreService genreService)
+        public AdminController(IMovieService movieService, ISessionService sessionService, IActorService actorService,
+            IGenreService genreService, IHallService hallService)
         {
             _sessionService = sessionService;
             _actorService = actorService;
             _movieService = movieService;
             _genreService = genreService;
+            _hallService = hallService;
         }
 
-        public IActionResult CreateMovie(Movie movie)
+        public IActionResult InsertMovie(Movie movie)
         {
-            if (ModelState.IsValid)
+            movie.Genres = new();
+            movie.Actors = new();
+
+            movie.Genres.Add(new Genre()
             {
-                var createdMovie = _movieService.Create(movie);
-                if (createdMovie != null)
-                {
-                    return RedirectToAction("Movies"); // Redirect to the Movies action
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Failed to create the movie. Please try again.");
-                }
-            }
-            return View("AddMovie", movie);
+                Id = Guid.Parse("31a66ba2-1f63-4491-9e1a-b09e86e17011"),
+                Name = "Без жанрів",
+            });
+            movie.Actors.Add(new Actor()
+            {
+                Id = Guid.Parse("af5d1c61-424f-4088-ac3c-5819ec24f971"),
+                Name = "Без",
+                Surname = "акторів"
+            });
+
+            _movieService.Create(movie);
+
+            return RedirectToAction("Movies");
         }
 
-        public IActionResult CreateActor(dynamic dynamic)
+        public IActionResult UpdateMovie(Guid movieId)
         {
-            Actor actor = dynamic.Actor;
-            if (ModelState.IsValid)
-            {
-                var createdActor = _actorService.Create(actor);
-                if (createdActor != null)
-                {
-                    return RedirectToAction("Movies"); // Redirect to the Movies action
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Failed to create the actor. Please try again.");
-                }
-            }
-            return View("AddActor", actor);
+            var movie = _movieService.GetById(movieId);
+            return View(movie);
         }
 
-        public IActionResult CreateGenre(dynamic dynamic)
+        public IActionResult UpdateSession(Guid sessionId)
         {
-            if (ModelState.IsValid)
-            {
-                var createdMovie = _movieService.Create(dynamic.Genre);
-                if (createdMovie != null)
-                {
-                    return RedirectToAction("Movies"); // Redirect to the Movies action
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Failed to create the genre. Please try again.");
-                }
-            }
-            return View("AddGenre", dynamic.Genre);
+            var session = _sessionService.GetById(sessionId);
+            var moviesList = _movieService.GetAll();
+            var hallList = _hallService.GetAll();
+
+            var halls = new SelectList(hallList, nameof(Hall.Id), nameof(Hall.Name));
+            var movies = new SelectList(moviesList, nameof(Movie.Id), nameof(Movie.Name));
+
+            ViewBag.Movies = movies;
+            ViewBag.Halls = halls;
+            return View(new SessionDto(session));
+        }
+
+        public IActionResult Update(Movie movie)
+        {
+            _movieService.Update(movie);
+            return RedirectToAction("Movies");
+        }
+
+        public IActionResult AddMovie()
+        {
+            var movie = new Movie();
+            var genresList = _genreService.GetAll();
+            var genres = new SelectList(genresList, nameof(Genre.Id), nameof(Genre.Name));
+
+            ViewBag.Genres = genres;
+            return View(movie);
+        }
+
+        public IActionResult AddSession()
+        {
+            var session = new SessionDto();
+            var moviesList = _movieService.GetAll();
+            var hallList = _hallService.GetAll();
+
+            var halls = new SelectList(hallList, nameof(Hall.Id), nameof(Hall.Name));
+            var movies = new SelectList(moviesList, nameof(Movie.Id), nameof(Movie.Name));
+
+            ViewBag.Movies = movies;
+            ViewBag.Halls = halls;
+            return View(session);
+        }
+
+        public IActionResult InsertSession(SessionDto sessionDto)
+        {
+            sessionDto.ReservedPlaces = new();
+            _sessionService.Create(sessionDto);
+
+            return RedirectToAction("Sessions");
+        }
+
+        public IActionResult UpdateS(SessionDto sessionDto)
+        {
+            if (sessionDto.ReservedPlaces is null) sessionDto.ReservedPlaces = new();
+            _sessionService.Update(sessionDto);
+            return RedirectToAction("Sessions");
         }
 
         public IActionResult Index()
@@ -100,30 +140,23 @@ namespace WebUI.Controllers
             return View(_eo);
         }
 
-        public IActionResult AddGenre()
+        public IActionResult DeleteSession(Guid id)
         {
-            return View();
+            var res = _sessionService.DeleteById(id);
+            return RedirectToAction("Sessions");
         }
 
         public IActionResult DeleteMovies(Guid id)
         {
-            /*var movie = _movieService.GetById(id);
-            if (movie != null)
-            {*/
-                var result = _movieService.Delete(id);
-                if (result)
-                {
-                    return RedirectToAction("Movies"); // Redirect to the Movies action
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Failed to delete the movie. Please try again.");
-                }
-                /*}
-                else
-                {
-                    ModelState.AddModelError("", "Movie not found.");
-                }*/
+            var result = _movieService.Delete(id);
+            result = result && _sessionService.DeleteByMovieId(id);
+            if (result)
+            {
+                return RedirectToAction("Movies");
+            }
+
+            ModelState.AddModelError("", "Failed to delete the movie. Please try again.");
+
             return RedirectToAction("Movies");
         }
 

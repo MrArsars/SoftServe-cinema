@@ -51,6 +51,21 @@ public class SessionService : ISessionService
             throw;
         }
     }
+    
+    public SessionDto Update(SessionDto sessionDto)
+    {
+        try
+        {
+            _sessionRepository.Update(sessionDto);
+            _sessionRepository.Save();
+            return sessionDto;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 
     public Session Create(Session session)
     {
@@ -59,6 +74,21 @@ public class SessionService : ISessionService
             _sessionRepository.Insert(new SessionDto(session));
             _sessionRepository.Save();
             return session;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+    
+    public SessionDto Create(SessionDto sessionDto)
+    {
+        try
+        {
+            _sessionRepository.Insert(sessionDto);
+            _sessionRepository.Save();
+            return sessionDto;
         }
         catch (Exception e)
         {
@@ -87,6 +117,40 @@ public class SessionService : ISessionService
         try
         {
             _sessionRepository.Delete(id);
+            _sessionRepository.Save();
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+    
+    public bool DeleteById(Guid id)
+    {
+        try
+        {
+            _sessionRepository.Delete(id);
+            _sessionRepository.Save();
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public bool DeleteByMovieId(Guid movieId)
+    {
+        try
+        {
+            var sessionsToDelete = _sessionRepository.GetAll().Where(x => x.MovieId.Equals(movieId));
+            foreach (var sessionToDelete in sessionsToDelete)
+            {
+                _sessionRepository.Delete(sessionToDelete.Id);
+            }
             _sessionRepository.Save();
             return true;
         }
