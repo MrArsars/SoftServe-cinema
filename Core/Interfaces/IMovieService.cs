@@ -11,4 +11,5 @@ public interface IMovieService
     Movie Create(Movie movie);
     bool Delete(Movie movie);
     bool Delete(int id);
+    bool Delete(Guid id);
 }

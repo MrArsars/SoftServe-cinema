@@ -93,6 +93,21 @@ public class MovieService : IMovieService
             throw;
         }
     }
+    
+    public bool Delete(Guid id)
+    {
+        try
+        {
+            _movieRepository.Delete(id);
+            _movieRepository.Save();
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 
     private Movie FromDto(MovieDto movieDto)
     {

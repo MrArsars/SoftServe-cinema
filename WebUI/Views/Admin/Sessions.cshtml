@@ -1,4 +1,4 @@
-@model List<Core.Models.Session.Session>
+@model dynamic
 @{
     ViewData["Title"] = "Sessions";
 }
@@ -58,7 +58,7 @@
                                     class="rounded-tr-2xl border-b border-yellow-400 bg-red-500 text-center text-lg font-bold">
                                     Видалити</th>
                             </tr>
-                            @foreach (var session in Model)
+                            @foreach (var session in Model.Sessions)
                             {
                                 <tr id="output"
                                     class="text-lg leading-6 font-medium transition duration-300 transform-none hover:bg-gray-300"
@@ -66,7 +66,7 @@
                                     <td class="w-4 p-4 border-b border-gray-200 border-r hover:border-white">
                                         <div class="flex items-center">
                                             <input id="checkbox-@session.Id" type="checkbox"
-                                                class="w-4 h-4 border-gray-300 rounded bg-gray-50">
+                                                class="checkbox-item w-4 h-4 border-gray-300 rounded bg-gray-50">
                                             <label for="checkbox-@session.Id" class="sr-only">checkbox</label>
                                         </div>
                                     </td>
@@ -139,6 +139,25 @@
                     row.style.display = "none";
                 }
             });
+        });
+    });
+    const checkboxAll = document.getElementById('checkbox-all');
+    const checkboxItems = document.querySelectorAll('.checkbox-item');
+
+    checkboxAll.addEventListener('change', function () {
+        checkboxItems.forEach(checkbox => {
+            checkbox.checked = checkboxAll.checked;
+        });
+    });
+
+    checkboxItems.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+            if (!checkbox.checked) {
+                checkboxAll.checked = false;
+            } else {
+                const allChecked = Array.from(checkboxItems).every(checkbox => checkbox.checked);
+                checkboxAll.checked = allChecked;
+            }
         });
     });
     $(document).ready(function () {

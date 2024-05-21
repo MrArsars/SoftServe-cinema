@@ -1,82 +1,119 @@
+@model dynamic
 @{
-    ViewData["Title"] = "Movies";
+ViewData["Title"] = "Movies";
 }
+<div id="addGenreDrawerContainer"
+     class="hidden fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full"
+     tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
+    <partial model="@Model.Genres" name="Genres"/>
+</div>
+<div id="addActorDrawerContainer"
+     class="hidden fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full"
+     tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
+    <partial model="@Model.Actors" name="Actors"/>
+</div>
 <!-- Add Movie Drawer -->
 <div id="drawer-create-movie"
-    class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800"
-    tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
-    <h5 id="drawer-label"
-        class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
-        New Movie</h5>
-    <form id="movieForm" action="/movies/create" method="POST">
+     class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white"
+     tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
+    <h5 id="drawer-label" class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Новий фільм</h5>
+    <form id="movieForm" asp-controller="Admin" asp-action="CreateMovie" method="POST">
         <div class="space-y-4">
             <div>
-                <label for="Title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                <input type="text" name="Title" id="Title"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Type movie's Title" required="">
+                <label for="Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Назва</label>
+                <input type="text" name="Name" id="Name"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                       placeholder="Введіть назву фільма" required="">
             </div>
             <div>
-                <label for="Ganre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ganre</label>
-                <input type="text" name="Ganre" id="Ganre"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Type movie's Ganre" required="">
+                <label for="Genres" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Жанри</label>
+                <input type="text" name="Genres" id="Genres"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                       placeholder="Жанри" required="">
+                <button type="button" id="drawer-add-genre-toggle" class="mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-600 focus:border-gray-600 block w-full p-2.5">
+                    Додати Жанри
+                </button>
             </div>
             <div>
-                <label for="ImageURL"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ImageURL</label>
+                <label for="ImageURL" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">URL Афіші</label>
                 <input type="text" name="ImageURL" id="ImageURL"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Type movie's ImageURL" required="">
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                       placeholder="Введіть ImageURL фільма" required="">
             </div>
             <div>
-                <label for="TrailerURL"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">TrailerURL</label>
+                <label for="TrailerURL" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">URL Трейлеру</label>
                 <input type="text" name="TrailerURL" id="TrailerURL"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Type movie's TrailerURL" required="">
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                       placeholder="Введіть TrailerURL фільма" required="">
+            </div>
+            <div class="flex">
+                <div class="mr-1">
+                    <label for="AgeRestriction" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Вікові обмеження</label>
+                    <input type="number" name="AgeRestriction" id="AgeRestriction"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                           placeholder="Введіть вікові обмеження фільма" required="">
+                </div>
+                <div>
+                    <label for="Rating" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Рейтинг</label>
+                    <input type="number" name="Rating" id="Rating"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                           placeholder="Введіть рейтинг фільму" required="">
+                </div>
             </div>
             <div>
-                <label for="Age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Age</label>
-                <input type="number" name="Age" id="Age"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Type movie's Age" required="">
+                <label for="Description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Опис</label>
+                <textarea id="Description" name="Description" rows="4"
+                          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                          placeholder="Введіть опис фільму"></textarea>
             </div>
             <div>
-                <label for="description"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                <textarea id="description" rows="4"
-                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Enter event description here"></textarea>
-            </div>
-            <div>
-                <label for="Actors" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Actors</label>
+                <label for="Actors" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Актори</label>
                 <input type="text" name="Actors" id="Actors"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Type movie's Actors" required="">
-            </div>
-            <div>
-                <label for="Raiting"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Raiting</label>
-                <input type="number" name="Raiting" id="Raiting"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Type movie's Raiting" required="">
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                       placeholder="Актори" required="">
+                <button type="button" id="drawer-add-actor-toggle" class="mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-600 focus:border-gray-600 block w-full p-2.5">
+                    Додати Акторів
+                </button>
             </div>
             <div class="bottom-0 left-0 flex justify-center w-full pb-4 space-x-4 md:px-4 md:absolute">
-                <button type="submit"
-                    class="bg-green-400 text-white w-full justify-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                    Add product
+                <button type="submit" class="bg-green-400 text-white w-full justify-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                    Створити фільм
                 </button>
                 <button type="button" id="drawer-create-movie-close"
-                    class="inline-flex w-full justify-center text-gray-500 items-center bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                        class="inline-flex w-full justify-center text-gray-500 items-center bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg border border-gray-200 text-sm font-medium px-3 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
                     <svg aria-hidden="true" class="w-5 h-5 -ml-1 sm:mr-1" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
                         </path>
                     </svg>
-                    Cancel
+                    Скасувати
                 </button>
             </div>
         </div>
     </form>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#drawer-add-actor-toggle').click(function () {
+            $('#addActorDrawerContainer').toggleClass('hidden');
+        });
+        const selectedActorIds = JSON.parse(window.localStorage.getItem('selectedActorIds')) || [];
+        $('#Actors').val(JSON.stringify(selectedActorIds));
+        localStorage.removeItem('selectedActorIds');
+
+        $('#drawer-add-actors-close').click(function () {
+            $('#addActorDrawerContainer').toggleClass('hidden');
+        });
+
+        $('#drawer-add-genre-toggle').click(function () {
+            $('#addGenreDrawerContainer').toggleClass('hidden');
+        });
+        const selectedGenresIds = JSON.parse(window.localStorage.getItem('selectedGenresIds')) || [];
+        $('#Genre').val(JSON.stringify(selectedGenresIds));
+        localStorage.removeItem('selectedGenresIds');
+
+        $('#drawer-add-genre-close').click(function () {
+            $('#addGenreDrawerContainer').toggleClass('hidden');
+        });
+    });
+</script>

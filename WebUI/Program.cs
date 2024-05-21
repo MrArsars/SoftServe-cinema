@@ -15,6 +15,7 @@ builder.Services.AddRepository();
 builder.Services.AddScoped<IActorService, ActorService>();
 builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddScoped<ISessionService, SessionService>();
+builder.Services.AddScoped<IGenreService, GenreService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
