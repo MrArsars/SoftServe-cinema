@@ -1,7 +1,8 @@
-using Core;
 using Core.Interfaces;
+using Core.Models.User;
 using Core.Services;
 using Infrastructure;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,10 +13,14 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext(connectionString);
 builder.Services.AddRepository();
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<CinemaDbContext>();
 builder.Services.AddScoped<IActorService, ActorService>();
 builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddScoped<ISessionService, SessionService>();
-builder.Services.AddScoped<IGenreService, GenreService>();
+builder.Services.AddScoped<IPlaceService, PlaceService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<ITicketService, TicketService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,6 +36,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

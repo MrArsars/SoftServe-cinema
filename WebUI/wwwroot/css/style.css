@@ -1,13 +1,29 @@
-.site-title{
+.site-title
+{
   display: flex;
   flex-direction: column;
 }
 /* Загальні стилі */
-body{
+html,body
+{
+  height: 100%;
   font-family: Arial, sans-serif;
-  background-color: #ffffff;
   place-content: start space-evenly;
-  height: 100svh;
+}
+.wrapper
+{
+  background: linear-gradient(to bottom left, #fefefa, #bfc1b7);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+main
+{
+  flex: 1 1 auto;
+  /* Стилі для main */
+  padding-top: 20px; /* Відступ зверху для уникнення накладання на header */
+  margin-top: 20px; /* Додатковий відступ зверху, якщо необхідно */
+  overflow: auto; /* Зберігаємо overflow */
 }
 .main-nav_link {
   font-family: Arial, sans-serif;
@@ -19,10 +35,6 @@ body{
   border-bottom-color: transparent;
   border-bottom-style: solid;
   transition: border-bottom 1000ms ease, color 1000ms ease; /* Додано перехід для зміни кольору тексту */
-}
-
-header.scrolled .main-nav_link {
-  color: #ffffff; /* Змінити колір тексту на чорний для прокрученого заголовку */
 }
 .main-nav_link:hover
 {
@@ -43,15 +55,32 @@ header.scrolled .main-nav_link {
   color: rgb(255, 0, 0);
 }
 
-.current-page_yellow a {
+.current-page_black_y a {
   font-family: Arial, sans-serif;
-  font-size: 20px;
+  font-size: 15px;
   text-decoration: none;
   display: inline-block;
   border-bottom-width: 2px;
   border-bottom-color: transparent;
   border-bottom-style: solid;
-  color: rgb(255, 238, 0);
+  color: rgb(255, 255, 255);
+}
+
+.current-page-black {
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+  color: white;
+  display: inline-block; /* Зробити елемент блоковим для налаштування ширини та висоти */
+  background-color: black; /* Колір фону - чорний */
+  padding: 10px 20px; /* Відступи всередині кнопки (верхній/нижній, лівий/правий) */
+  border-radius: 20px; /* Закруглення кутів */
+}
+
+.current-page-black a {
+  color: white; /* Колір тексту - білий */
+  text-decoration: none; /* Відміна підкреслення посилання */
+  font-weight: bold; /* Товщина шрифту - жирний */
 }
 
 .current-page_orange a {
@@ -68,25 +97,106 @@ header.scrolled .main-nav_link {
   max-width: 95%; /* Змініть на більший відсоток або певне значення, щоб контент не стискався */
   margin: 0 auto;
 }
-/* Шапка сайту */
+
+/* Спеціальний стиль для елемента "Увійти" */
+.current-page_yellow {
+  margin-right: auto; /* Відсування елементу "Увійти" вправо */
+}
+/* Стара версія !!!!!!!*/
+/*header {*/
+/*  !* Приклад стилів для header *!*/
+/*  width: 100%;*/
+/*  background: linear-gradient(to left, #fcfbf2, #d5d0c4);*/
+/*  !*background-color: white;*!*/
+/*  color: transparent;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  !*justify-content: space-between;*!*/
+/*  align-items: center;*/
+/*  padding: 10px 20px;*/
+/*  position: fixed;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  z-index: 1;*/
+/*  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);*/
+/*  transition: background 1.5s ease; !* Додайте плавний перехід для зміни фонового кольору *!*/
+/*}*/
+
+/*header.scrolled {*/
+/*  background: linear-gradient(to left, rgba(19, 19, 19, 0.8), rgba(19, 19, 19, 0.8));*/
+/*  !*background-color: rgba(19, 19, 19, 0.8); !* Напівпрозорий темно-сірий фон *!*!*/
+/*}*/
+
+/*-----------------------------------------*/
+
 header {
-  background-color: transparent;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
+  color: transparent;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   z-index: 1;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  transition: background-color 1.5s ease; /* Додайте плавний перехід для зміни фонового кольору */
+  background: none; /* Основний фон зникає */
 }
 
-header.scrolled {
-  background-color: rgba(19, 19, 19, 0.8); /* Напівпрозорий темно-сірий фон */
+.header-bg-initial {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, #fcfbf2, #d5d0c4);
+  transition: opacity 1.5s ease;
+  z-index: -2; /* Задній план */
+}
+
+.header-bg-scrolled {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(19, 19, 19, 0.8), rgba(19, 19, 19, 0.8));
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  z-index: -1; /* Передній план, який стає видимим при прокрутці */
+}
+
+header.scrolled .header-bg-initial {
+  opacity: 0; /* Зникає початковий фон */
+}
+
+header.scrolled .header-bg-scrolled {
+  opacity: 1; /* Показується фоновий градієнт при прокрутці */
+}
+/* ХЕДЕР */
+.logo {
+  order: 1;
+  margin-right: auto; /* Зсув логотипу вправо */
+  margin-left: 460px;
+}
+
+nav {
+  order: 2;
+}
+
+.login {
+  order: 3;
+  margin-left: auto; /* Зсув блоку "Увійти" вліво */
+  margin-right: 520px;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+/* ХЕДЕР */
+header.scrolled .main-nav_link {
+  color: #ffffff; /* Змінити колір тексту на чорний для прокрученого заголовку */
 }
 header img.logo {
   height: 50px;
@@ -114,7 +224,7 @@ header nav li {
 }
 
 header nav a {
-  color: #555;
+  color: #ffffff;
   text-decoration: none;
   font-size: 16px;
   font-weight: bold;
@@ -173,7 +283,7 @@ img {
 }
 
 h3 {
-  font-size: 18px;
+  font-size: 30px;
   margin: 10px 0;
 }
 
@@ -203,6 +313,7 @@ footer {
   background-color: #eee;
   padding: 20px;
 }
+
 
 .footer-left p {
   margin: 0;
@@ -320,7 +431,7 @@ element.style {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(50px, 24%));
-  gap: 15px;
+  gap: 20px;
 }
 .section {
   position: relative;
@@ -331,10 +442,12 @@ section {
   unicode-bidi: isolate;
 }
 .container {
-  max-width: 1150px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
   padding-right: 10px;
   padding-left: 10px;
+  
 }
 
 .container_cabinet {
@@ -374,15 +487,6 @@ section {
 /*-------------------------------------------------------------------
     Movies
 -------------------------------------------------------------------*/
-/*Hire*/
-.movies-hire {
-  margin: 0 -10px;
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(50px, 24%));
-  gap: 15px;
-}
-
 .movie-hire {
   margin: 0 10px 73px 10px;
 }
@@ -390,62 +494,15 @@ section {
 .movie-hire:focus {
   outline: none;
 }
-
-.movie-hire__img-wrap {
-  position: relative;
-  height: 450px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-bottom: 17px;
-}
-
-.movie-hire__img-wrap:after {
-  content: '';
-  position: absolute;
-  bottom: -15px;
-  right: 30px;
-  left: 30px;
-  margin: 0 auto;
-  height: 160px;
-  -webkit-border-radius: 30px;
-  border-radius: 30px;
-  background-color: #000;
-  z-index: -1;
-  -webkit-filter: blur(10px);
-  filter: blur(10px);
-}
-
-.movie-hire__img-wrap:hover .movie-hire__icons {
-  max-width: 147px;
-}
-
-.movie-hire__img-wrap:hover .movie-hire__icon {
-  opacity: 1;
-  -webkit-transition: .5s;
-  -o-transition: .5s;
-  transition: .5s;
-}
 .movie-hire__icons {
   max-width: 100%;
   margin: 0 auto;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
   position: absolute;
@@ -453,7 +510,6 @@ section {
   right: 0;
   left: 0;
   top: 0;
-  -webkit-transition: max-width .3s;
   -o-transition: max-width .3s;
   transition: max-width .3s;
 }
@@ -487,7 +543,7 @@ section {
 }
 
 .movie-hire__icon:hover {
-  background-color: #5aa900;
+  background-color: #d9c010;
 }
 
 .movie-hire__icon:hover:before {
@@ -539,6 +595,10 @@ section {
   align-items: baseline;
   margin-bottom: 14px;
 }
+.movie-hire__title a {
+  font-size: 20px;
+  margin: 0 auto;
+}
 .movie-hire__tags {
   display: -webkit-box;
   display: -webkit-flex;
@@ -561,9 +621,8 @@ section {
 }
 .movie-hire__img-wrap {
   position: relative;
-  height: 450px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+  height: 100%;
+  border-radius: 20px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -603,8 +662,7 @@ section {
 }
 
 .movie-hire__img {
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+  border-radius: 20px;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -618,7 +676,7 @@ a {
 }
 
 a:hover {
-  color: #5aa900;
+  color: #979797;
 }
 
 a:focus {
@@ -637,10 +695,10 @@ a:focus {
   width: 400px;
   padding: 20px;
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: #d8d4c8;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 100px; /* Відступ зверху, щоб форма була посередині сторінки */
-  margin-left: 850px;
+  margin: auto;
+  margin-top: inherit;
 }
 .menu-block {
   display: flex; /* Встановлюємо контейнер блоку як flex */
@@ -662,6 +720,8 @@ a:focus {
 -------------------------------------------------------------------*/
 .schedule-table {
   width: 100%;
+  position: relative;
+  /*height: 2582.94px;*/
 }
 
 .schedule-table__row {
@@ -686,8 +746,8 @@ a:focus {
 }
 
 .schedule-table__row_head .schedule-table__col {
-  border-bottom-color: #d9c010;
-  border-right-color: #d9c010;
+  border-bottom-color: #706259;
+  border-right-color: #706259;
 }
 
 .schedule-table__row_head .schedule-table__col:nth-child(2) {
@@ -745,8 +805,185 @@ a:focus {
 }
 
 .schedule-table__btn:hover {
-  -webkit-box-shadow: inset 0 0 0 1px #d9c010;
-  box-shadow: inset 0 0 0 1px #d9c010;
+  -webkit-box-shadow: inset 0 0 0 1px #706259;
+  box-shadow: inset 0 0 0 1px #706259;
   background-color: #5aa900;
   color: #fff;
+}
+/*-------------------------------------------------------------------
+    Schedule
+-------------------------------------------------------------------*/
+.schedule {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.schedule_alt {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-bottom: 65px;
+}
+
+.schedule__list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.schedule__list_alt {
+  margin-left: auto;
+}
+
+.schedule__item {
+  font-size: 0;
+  line-height: 0;
+}
+
+.schedule__item:first-child .schedule__btn {
+  -webkit-border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 5px;
+}
+
+.schedule__item:last-child .schedule__btn {
+  -webkit-border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0;
+}
+
+.schedule__btn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 5px 10px;
+  vertical-align: top;
+  height: 100%;
+  background-color: transparent;
+  border: 1px solid #706259;
+  color: #43433f;
+  font-size: 14px;
+  line-height: 1.2;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+}
+
+.schedule__btn_current:before {
+  content: '';
+  background: url("../images/spritesheet.png") -77px -32px no-repeat;
+  width: 11px;
+  height: 9px;
+  margin-right: 13px;
+}
+
+.schedule__btn:hover, .schedule__btn_current {
+  background-color: #d9c010;
+  color: #312204;
+}
+
+.schedule__btn_all {
+  margin-left: 18px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.schedule__btn_invert {
+  border-color: #312204;
+  color: #312204;
+}
+
+.schedule__btn_invert:hover {
+  background-color: #312204;
+  color: #d9c010;
+}
+
+.single-schedule {
+  border-top: 1px solid rgba(151, 151, 151, 0.3);
+  padding-top: 25px;
+  /*margin: 0 0 61px -webkit-calc(23.6522% + 17px);*/
+  /*margin: 0 0 61px calc(23.6522% + 17px);*/
+  overflow: hidden;
+}
+
+.single-schedule__row {
+  border-bottom: 1px solid rgba(151, 151, 151, 0.3);
+  padding: 0 0 26px;
+  margin-bottom: 25px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.single-schedule__row:last-child {
+  margin-bottom: 0;
+}
+
+.single-schedule__col {
+  border: 1px solid rgba(146, 146, 146, 0.55);
+  padding: 10px 15px;
+  margin: 0 15px 15px 0;
+}
+
+.single-schedule__time {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 18px;
+  /*line-height: 1;*/
+  width: fit-content;
+}
+
+.single-schedule__format {
+  color: #d9c010;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.single-schedule-title {
+  font-weight: 300;
+  color: #000000;
+  margin: 0 0 25px;
+}
+
+.single-schedule-title b {
+  font-weight: 700;
+  color: #d9c010;
+}
+.bt-sub
+{
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  color: #000000;
+  text-decoration: none;
+  display: inline-block;
+  border-bottom-width: 2px;
+  border-bottom-color: transparent;
+  border-bottom-style: solid;
+  transition: border-bottom 1000ms ease, color 1000ms ease; /* Додано перехід для зміни кольору тексту */
+}
+.age-18-plus {
+  color: #ff0000;
+}
+
+.age-14-16 {
+  color: #ffff00;
+}
+
+.age-0-14 {
+  color: #00ff00;
 }

@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using Core.Interfaces;
-using Core.Services;
+using Core.Models.Movie;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.Models;
 
@@ -9,13 +9,11 @@ namespace WebUI.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    // private readonly IActorService _actorService;
     private readonly IMovieService _movieService;
 
     public HomeController(ILogger<HomeController> logger, IMovieService movieService)
     {
         _logger = logger;
-        // _actorService = actorService;
         _movieService = movieService;
     }
 

@@ -4,6 +4,7 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(CinemaDbContext))]
-    partial class CinemaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240515220629_added identity")]
+    partial class addedidentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,6 +126,9 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsReserved")
+                        .HasColumnType("bit");
+
                     b.Property<int>("RowNumber")
                         .HasColumnType("int");
 
@@ -150,10 +156,6 @@ namespace Infrastructure.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.Property<string>("ReservedPlaces")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Sessions");
@@ -169,6 +171,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("SessionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");

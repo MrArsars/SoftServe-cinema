@@ -1,24 +1,36 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model Core.Models.User.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
 }
+
 <main style="overflow: auto" class="main-body">
 	<section id="Login">
 		<div class="form-container">
-			<h2 class="mb-4">Register</h2>
-			<form id="registerForm" class="bootstrap-form">
+			<h2 class="mb-4" style="font-size: 30px">Register</h2>
+			<form class="bootstrap-form" method="post" asp-controller="Register" asp-action="Index">
+				<div asp-validation-summary="ModelOnly"></div>
 				<div class="mb-3">
-					<label for="registerName" class="form-label">Full Name</label>
-					<input type="text" class="form-control" id="registerName" name="registerName" required>
+					<label class="form-label" asp-for="Name">Name</label>
+					<input class="form-control" required asp-for="Name">
+					<span asp-validation-for="Name"></span>
 				</div>
 				<div class="mb-3">
-					<label for="registerEmail" class="form-label">Email address</label>
-					<input type="email" class="form-control" id="registerEmail" name="registerEmail" required>
+					<label class="form-label" asp-for="Email">Email</label>
+					<input class="form-control" required asp-for="Email">
+					<span asp-validation-for="Email"></span>
 				</div>
 				<div class="mb-3">
-					<label for="registerPassword" class="form-label">Password</label>
-					<input type="password" class="form-control" id="registerPassword" name="registerPassword" required>
+					<label class="form-label" asp-for="Password">Пароль</label>
+					<input class="form-control" required asp-for="Password">
+					<span asp-validation-for="Password"></span>
 				</div>
-				<button type="submit" class="btn btn-success">Register</button>
+				<div class="mb-3">
+					<label class="form-label" asp-for="PasswordConfirm">Підтвердіть пароль</label>
+					<input class="form-control" required asp-for="PasswordConfirm">
+					<span asp-validation-for="PasswordConfirm"></span>
+				</div>
+				<button type="submit" class="btn btn-success">Зареєструватись</button>
 			</form>
 		</div>
 	</section>

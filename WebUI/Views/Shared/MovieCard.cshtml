@@ -1,11 +1,10 @@
 @model Core.Models.Movie.Movie
-
 <figure class="movie-hire movies date_01">
     <div class="movie-hire__img-wrap">
         <img src="@Model.ImageUrl" alt="" class="movie-hire__img">
         <div class="movie-hire__icons">
             <a asp-controller="Film" asp-action="Index" asp-route-id="@Model.Id" class="movie-hire__icon movie-hire__icon_ticket" tabindex="-1"></a>
-            <a href="#" class="movie-hire__icon movie-hire__icon_play" data-youtube-id="Zw0V4UlRc2g" data-movie-name="@Model.Name" tabindex="-1"></a>
+            <a href="@Model.TrailerUrl" class="movie-hire__icon movie-hire__icon_play" data-youtube-id="Zw0V4UlRc2g" data-movie-name="@Model.Name" tabindex="-1" target="_blank"></a>
         </div>
     </div>
     <figcaption>

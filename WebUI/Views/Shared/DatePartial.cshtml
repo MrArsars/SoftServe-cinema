@@ -1,0 +1,8 @@
+@using System.Globalization
+
+@{
+    var dateStr = DateTime.Now.ToString("dddd d MMMM", new CultureInfo("uk-UA"));
+    var formattedDateStr = char.ToUpper(dateStr[0]) + dateStr.Substring(1);
+}
+
+@formattedDateStr
